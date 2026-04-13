@@ -18,7 +18,7 @@
 #let conj-table(rows) = {
   set text(size: 7.5pt)
   table(
-    columns: (1.9cm, 1fr, 1fr, 1fr),
+    columns: (1.5cm, 1fr, 1fr, 1fr, 1fr),
     align: left,
     inset: (x: 4pt, y: 3.5pt),
     stroke: (_, y) => (
@@ -32,9 +32,10 @@
       text(size: 6.5pt, weight: 500, tracking: 0.08em, fill: ink-sec)[PRONOME],
       text(size: 6.5pt, weight: 500, tracking: 0.08em, fill: ink-sec)[PRESENTE],
       text(size: 6.5pt, weight: 500, tracking: 0.08em, fill: ink-sec)[IMPERFETTO],
-      text(size: 6.5pt, weight: 500, tracking: 0.08em, fill: ink-sec)[PASSATO PROSSIMO],
+      text(size: 6.5pt, weight: 500, tracking: 0.08em, fill: ink-sec)[PASS. PROS.],
+      text(size: 6.5pt, weight: 500, tracking: 0.08em, fill: ink-sec)[FUTURO],
     ),
-    ..rows.map(r => (r.at(0), r.at(1), r.at(2), r.at(3))).flatten().map(c => [#c]),
+    ..rows.map(r => (r.at(0), r.at(1), r.at(2), r.at(3), r.at(4))).flatten().map(c => [#c]),
   )
 }
 
@@ -60,7 +61,7 @@
 
 // ── comparison table renderer ────────────────────────────────────────────────
 
-#let verb-compare(group-label, verbs, presente-rows, imp-note, ppr-note) = {
+#let verb-compare(group-label, verbs, presente-rows, imp-note, ppr-note, fut-note) = {
   let n = verbs.len()
   let verb-cols = range(n).map(i => 1fr)
   block(breakable: false)[
@@ -88,7 +89,8 @@
     )
     #v(3pt)
     #text(size: 7pt, weight: 500, fill: ink-sec)[Imperfetto (io):] #h(1pt)#text(size: 7pt, style: "italic")[#imp-note]#linebreak()
-    #text(size: 7pt, weight: 500, fill: ink-sec)[Passato prossimo:] #h(1pt)#text(size: 7pt, style: "italic")[#ppr-note]
+    #text(size: 7pt, weight: 500, fill: ink-sec)[Passato prossimo:] #h(1pt)#text(size: 7pt, style: "italic")[#ppr-note]#linebreak()
+    #text(size: 7pt, weight: 500, fill: ink-sec)[Futuro (io):] #h(1pt)#text(size: 7pt, style: "italic")[#fut-note]
   ]
   v(7pt)
 }
@@ -147,7 +149,7 @@
 #block(width: 100%)[
   #text(size: 11pt, weight: 600, tracking: 0.03em)[Verbi Italiani — Coniugazione]
   #h(10pt)
-  #text(size: 7pt, weight: 500, tracking: 0.1em, fill: ink-sec)[PRESENTE · IMPERFETTO · PASSATO PROSSIMO]
+  #text(size: 7pt, weight: 500, tracking: 0.1em, fill: ink-sec)[PRESENTE · IMPERFETTO · PASS. PROS. · FUTURO]
 ]
 #v(5pt)
 #line(length: 100%, stroke: 0.6pt + ink)
@@ -161,17 +163,18 @@
 #verb-section(
   "parlare", "sprechen", "verbi in -are",
   (
-    ("io",      "parlo",    "parlavo",    "ho parlato"),
-    ("tu",      "parli",    "parlavi",    "hai parlato"),
-    ("lui/lei", "parla",    "parlava",    "ha parlato"),
-    ("noi",     "parliamo", "parlavamo",  "abbiamo parlato"),
-    ("voi",     "parlate",  "parlavate",  "avete parlato"),
-    ("loro",    "parlano",  "parlavano",  "hanno parlato"),
+    ("io",      "parlo",    "parlavo",    "ho parlato",      "parlerò"),
+    ("tu",      "parli",    "parlavi",    "hai parlato",     "parlerai"),
+    ("lui/lei", "parla",    "parlava",    "ha parlato",      "parlerà"),
+    ("noi",     "parliamo", "parlavamo",  "abbiamo parlato", "parleremo"),
+    ("voi",     "parlate",  "parlavate",  "avete parlato",   "parlerete"),
+    ("loro",    "parlano",  "parlavano",  "hanno parlato",   "parleranno"),
   ),
   (
     ("tense": "Presente",         "text": "Ogni giorno parlo con mia madre."),
     ("tense": "Imperfetto",       "text": "Da bambino parlavo sempre italiano."),
     ("tense": "Passato prossimo", "text": "Ieri ho parlato con il professore."),
+    ("tense": "Futuro",           "text": "Domani parlerò con il direttore."),
   ),
 )
 
@@ -179,17 +182,18 @@
 #verb-section(
   "ripetere", "wiederholen", "verbi in -ere",
   (
-    ("io",      "ripeto",    "ripetevo",    "ho ripetuto"),
-    ("tu",      "ripeti",    "ripetevi",    "hai ripetuto"),
-    ("lui/lei", "ripete",    "ripeteva",    "ha ripetuto"),
-    ("noi",     "ripetiamo", "ripetevamo",  "abbiamo ripetuto"),
-    ("voi",     "ripetete",  "ripetevate",  "avete ripetuto"),
-    ("loro",    "ripetono",  "ripetevano",  "hanno ripetuto"),
+    ("io",      "ripeto",    "ripetevo",    "ho ripetuto",      "ripeterò"),
+    ("tu",      "ripeti",    "ripetevi",    "hai ripetuto",     "ripeterai"),
+    ("lui/lei", "ripete",    "ripeteva",    "ha ripetuto",      "ripeterà"),
+    ("noi",     "ripetiamo", "ripetevamo",  "abbiamo ripetuto", "ripeteremo"),
+    ("voi",     "ripetete",  "ripetevate",  "avete ripetuto",   "ripeterete"),
+    ("loro",    "ripetono",  "ripetevano",  "hanno ripetuto",   "ripeteranno"),
   ),
   (
     ("tense": "Presente",         "text": "Ripeto la domanda per chi non ha sentito."),
     ("tense": "Imperfetto",       "text": "Il professore ripeteva sempre le stesse cose."),
     ("tense": "Passato prossimo", "text": "Ho ripetuto l'esame la settimana scorsa."),
+    ("tense": "Futuro",           "text": "Ripeterò l'esercizio fino a capirlo."),
   ),
 )
 
@@ -197,17 +201,18 @@
 #verb-section(
   "sentire", "hören/fühlen", "verbi in -ire (tipo I)",
   (
-    ("io",      "sento",    "sentivo",    "ho sentito"),
-    ("tu",      "senti",    "sentivi",    "hai sentito"),
-    ("lui/lei", "sente",    "sentiva",    "ha sentito"),
-    ("noi",     "sentiamo", "sentivamo",  "abbiamo sentito"),
-    ("voi",     "sentite",  "sentivate",  "avete sentito"),
-    ("loro",    "sentono",  "sentivano",  "hanno sentito"),
+    ("io",      "sento",    "sentivo",    "ho sentito",      "sentirò"),
+    ("tu",      "senti",    "sentivi",    "hai sentito",     "sentirai"),
+    ("lui/lei", "sente",    "sentiva",    "ha sentito",      "sentirà"),
+    ("noi",     "sentiamo", "sentivamo",  "abbiamo sentito", "sentiremo"),
+    ("voi",     "sentite",  "sentivate",  "avete sentito",   "sentirete"),
+    ("loro",    "sentono",  "sentivano",  "hanno sentito",   "sentiranno"),
   ),
   (
     ("tense": "Presente",         "text": "Sento la musica dalla finestra."),
     ("tense": "Imperfetto",       "text": "Sentivo un rumore strano."),
     ("tense": "Passato prossimo", "text": "Ho sentito le tue parole."),
+    ("tense": "Futuro",           "text": "Sentirò la tua risposta domani."),
   ),
 )
 
@@ -215,17 +220,18 @@
 #verb-section(
   "finire", "beenden", "verbi in -ire (tipo II, -isc-)",
   (
-    ("io",      [finisco #text(fill: ink-sec, size: 7pt)[†]],    "finivo",    "ho finito"),
-    ("tu",      [finisci #text(fill: ink-sec, size: 7pt)[†]],    "finivi",    "hai finito"),
-    ("lui/lei", [finisce #text(fill: ink-sec, size: 7pt)[†]],    "finiva",    "ha finito"),
-    ("noi",     "finiamo",  "finivamo",  "abbiamo finito"),
-    ("voi",     "finite",   "finivate",  "avete finito"),
-    ("loro",    [finiscono #text(fill: ink-sec, size: 7pt)[†]],  "finivano",  "hanno finito"),
+    ("io",      [finisco #text(fill: ink-sec, size: 7pt)[†]],    "finivo",    "ho finito",      "finirò"),
+    ("tu",      [finisci #text(fill: ink-sec, size: 7pt)[†]],    "finivi",    "hai finito",     "finirai"),
+    ("lui/lei", [finisce #text(fill: ink-sec, size: 7pt)[†]],    "finiva",    "ha finito",      "finirà"),
+    ("noi",     "finiamo",  "finivamo",  "abbiamo finito", "finiremo"),
+    ("voi",     "finite",   "finivate",  "avete finito",   "finirete"),
+    ("loro",    [finiscono #text(fill: ink-sec, size: 7pt)[†]],  "finivano",  "hanno finito",   "finiranno"),
   ),
   (
     ("tense": "Presente",         "text": "Finisco il lavoro alle cinque."),
     ("tense": "Imperfetto",       "text": "Finivo sempre tardi."),
     ("tense": "Passato prossimo", "text": "Ho finito il libro ieri."),
+    ("tense": "Futuro",           "text": "Finirò il progetto entro venerdì."),
   ),
 )
 
@@ -237,17 +243,18 @@
 #verb-section(
   "essere", "sein", "ausiliare",
   (
-    ("io",      "sono",   "ero",      "sono stato·a"),
-    ("tu",      "sei",    "eri",      "sei stato·a"),
-    ("lui/lei", [è],      "era",      "è stato·a"),
-    ("noi",     "siamo",  "eravamo",  "siamo stati·e"),
-    ("voi",     "siete",  "eravate",  "siete stati·e"),
-    ("loro",    "sono",   "erano",    "sono stati·e"),
+    ("io",      "sono",   "ero",      "sono stato·a",   "sarò"),
+    ("tu",      "sei",    "eri",      "sei stato·a",    "sarai"),
+    ("lui/lei", [è],      "era",      "è stato·a",      "sarà"),
+    ("noi",     "siamo",  "eravamo",  "siamo stati·e",  "saremo"),
+    ("voi",     "siete",  "eravate",  "siete stati·e",  "sarete"),
+    ("loro",    "sono",   "erano",    "sono stati·e",   "saranno"),
   ),
   (
     ("tense": "Presente",         "text": "Sono stanco dopo il lavoro."),
     ("tense": "Imperfetto",       "text": "Era una bella giornata."),
     ("tense": "Passato prossimo", "text": "Siamo stati a Roma la settimana scorsa."),
+    ("tense": "Futuro",           "text": "Sarà una bella giornata domani."),
   ),
 )
 
@@ -259,17 +266,18 @@
 #verb-section(
   "avere", "haben", "ausiliare",
   (
-    ("io",      "ho",       "avevo",    "ho avuto"),
-    ("tu",      "hai",      "avevi",    "hai avuto"),
-    ("lui/lei", "ha",       "aveva",    "ha avuto"),
-    ("noi",     "abbiamo",  "avevamo",  "abbiamo avuto"),
-    ("voi",     "avete",    "avevate",  "avete avuto"),
-    ("loro",    "hanno",    "avevano",  "hanno avuto"),
+    ("io",      "ho",       "avevo",    "ho avuto",      "avrò"),
+    ("tu",      "hai",      "avevi",    "hai avuto",     "avrai"),
+    ("lui/lei", "ha",       "aveva",    "ha avuto",      "avrà"),
+    ("noi",     "abbiamo",  "avevamo",  "abbiamo avuto", "avremo"),
+    ("voi",     "avete",    "avevate",  "avete avuto",   "avrete"),
+    ("loro",    "hanno",    "avevano",  "hanno avuto",   "avranno"),
   ),
   (
     ("tense": "Presente",         "text": "Ho molti libri a casa."),
     ("tense": "Imperfetto",       "text": "Avevamo un cane."),
     ("tense": "Passato prossimo", "text": "Ha avuto problemi con il computer."),
+    ("tense": "Futuro",           "text": "Avrai più tempo il prossimo anno."),
   ),
 )
 
@@ -277,17 +285,18 @@
 #verb-section(
   "fare", "machen/tun", "irregolare",
   (
-    ("io",      "faccio",   "facevo",    "ho fatto"),
-    ("tu",      "fai",      "facevi",    "hai fatto"),
-    ("lui/lei", "fa",       "faceva",    "ha fatto"),
-    ("noi",     "facciamo", "facevamo",  "abbiamo fatto"),
-    ("voi",     "fate",     "facevate",  "avete fatto"),
-    ("loro",    "fanno",    "facevano",  "hanno fatto"),
+    ("io",      "faccio",   "facevo",    "ho fatto",      "farò"),
+    ("tu",      "fai",      "facevi",    "hai fatto",     "farai"),
+    ("lui/lei", "fa",       "faceva",    "ha fatto",      "farà"),
+    ("noi",     "facciamo", "facevamo",  "abbiamo fatto", "faremo"),
+    ("voi",     "fate",     "facevate",  "avete fatto",   "farete"),
+    ("loro",    "fanno",    "facevano",  "hanno fatto",   "faranno"),
   ),
   (
     ("tense": "Presente",         "text": "Faccio colazione alle sette."),
     ("tense": "Imperfetto",       "text": "Facevo sport ogni giorno."),
     ("tense": "Passato prossimo", "text": "Hanno fatto una passeggiata nel parco."),
+    ("tense": "Futuro",           "text": "Farò una torta per il tuo compleanno."),
   ),
 )
 
@@ -295,17 +304,18 @@
 #verb-section(
   "volere", "wollen", "modale",
   (
-    ("io",      "voglio",   "volevo",    "ho voluto"),
-    ("tu",      "vuoi",     "volevi",    "hai voluto"),
-    ("lui/lei", "vuole",    "voleva",    "ha voluto"),
-    ("noi",     "vogliamo", "volevamo",  "abbiamo voluto"),
-    ("voi",     "volete",   "volevate",  "avete voluto"),
-    ("loro",    "vogliono", "volevano",  "hanno voluto"),
+    ("io",      "voglio",   "volevo",    "ho voluto",      "vorrò"),
+    ("tu",      "vuoi",     "volevi",    "hai voluto",     "vorrai"),
+    ("lui/lei", "vuole",    "voleva",    "ha voluto",      "vorrà"),
+    ("noi",     "vogliamo", "volevamo",  "abbiamo voluto", "vorremo"),
+    ("voi",     "volete",   "volevate",  "avete voluto",   "vorrete"),
+    ("loro",    "vogliono", "volevano",  "hanno voluto",   "vorranno"),
   ),
   (
     ("tense": "Presente",         "text": "Voglio un caffè, per favore."),
     ("tense": "Imperfetto",       "text": "Volevo studiare medicina."),
     ("tense": "Passato prossimo", "text": "Ho voluto provare il nuovo ristorante."),
+    ("tense": "Futuro",           "text": "Vorrò sapere la tua opinione."),
   ),
 )
 
@@ -313,17 +323,18 @@
 #verb-section(
   "potere", "können/dürfen", "modale",
   (
-    ("io",      "posso",    "potevo",    "ho potuto"),
-    ("tu",      "puoi",     "potevi",    "hai potuto"),
-    ("lui/lei", [può],      "poteva",    "ha potuto"),
-    ("noi",     "possiamo", "potevamo",  "abbiamo potuto"),
-    ("voi",     "potete",   "potevate",  "avete potuto"),
-    ("loro",    "possono",  "potevano",  "hanno potuto"),
+    ("io",      "posso",    "potevo",    "ho potuto",      "potrò"),
+    ("tu",      "puoi",     "potevi",    "hai potuto",     "potrai"),
+    ("lui/lei", [può],      "poteva",    "ha potuto",      "potrà"),
+    ("noi",     "possiamo", "potevamo",  "abbiamo potuto", "potremo"),
+    ("voi",     "potete",   "potevate",  "avete potuto",   "potrete"),
+    ("loro",    "possono",  "potevano",  "hanno potuto",   "potranno"),
   ),
   (
     ("tense": "Presente",         "text": "Posso aprire la finestra?"),
     ("tense": "Imperfetto",       "text": "Potevamo uscire prima."),
     ("tense": "Passato prossimo", "text": "Non ho potuto dormire."),
+    ("tense": "Futuro",           "text": "Potrai venire alla festa domani?"),
   ),
 )
 
@@ -331,17 +342,18 @@
 #verb-section(
   "dovere", "müssen/sollen", "modale",
   (
-    ("io",      "devo",      "dovevo",    "ho dovuto"),
-    ("tu",      "devi",      "dovevi",    "hai dovuto"),
-    ("lui/lei", "deve",      "doveva",    "ha dovuto"),
-    ("noi",     "dobbiamo",  "dovevamo",  "abbiamo dovuto"),
-    ("voi",     "dovete",    "dovevate",  "avete dovuto"),
-    ("loro",    "devono",    "dovevano",  "hanno dovuto"),
+    ("io",      "devo",      "dovevo",    "ho dovuto",      "dovrò"),
+    ("tu",      "devi",      "dovevi",    "hai dovuto",     "dovrai"),
+    ("lui/lei", "deve",      "doveva",    "ha dovuto",      "dovrà"),
+    ("noi",     "dobbiamo",  "dovevamo",  "abbiamo dovuto", "dovremo"),
+    ("voi",     "dovete",    "dovevate",  "avete dovuto",   "dovrete"),
+    ("loro",    "devono",    "dovevano",  "hanno dovuto",   "dovranno"),
   ),
   (
     ("tense": "Presente",         "text": "Devo studiare per l'esame."),
     ("tense": "Imperfetto",       "text": "Dovevo lavorare tutto il giorno."),
     ("tense": "Passato prossimo", "text": "Ho dovuto chiamare il medico."),
+    ("tense": "Futuro",           "text": "Dovrò partire presto domani mattina."),
   ),
 )
 
@@ -349,17 +361,18 @@
 #verb-section(
   "dire", "sagen", "irregolare",
   (
-    ("io",      "dico",    "dicevo",    "ho detto"),
-    ("tu",      "dici",    "dicevi",    "hai detto"),
-    ("lui/lei", "dice",    "diceva",    "ha detto"),
-    ("noi",     "diciamo", "dicevamo",  "abbiamo detto"),
-    ("voi",     "dite",    "dicevate",  "avete detto"),
-    ("loro",    "dicono",  "dicevano",  "hanno detto"),
+    ("io",      "dico",    "dicevo",    "ho detto",      "dirò"),
+    ("tu",      "dici",    "dicevi",    "hai detto",     "dirai"),
+    ("lui/lei", "dice",    "diceva",    "ha detto",      "dirà"),
+    ("noi",     "diciamo", "dicevamo",  "abbiamo detto", "diremo"),
+    ("voi",     "dite",    "dicevate",  "avete detto",   "direte"),
+    ("loro",    "dicono",  "dicevano",  "hanno detto",   "diranno"),
   ),
   (
     ("tense": "Presente",         "text": "Dico sempre la verità."),
     ("tense": "Imperfetto",       "text": "Diceva sempre bugie."),
     ("tense": "Passato prossimo", "text": "Cosa hai detto?"),
+    ("tense": "Futuro",           "text": "Ti dirò la verità quando sarà il momento."),
   ),
 )
 
@@ -382,6 +395,7 @@
   ),
   "andavo · venivo · uscivo · stavo (regolare dal tema)",
   "andato·a · venuto·a · uscito·a · stato·a (essere — accordo). stato·a = stesso participio di essere; il contesto distingue.",
+  "andrò · verrò · uscirò · starò (stem irregolare: andr-, verr-, uscir-, star-)",
 )
 
 // ── dare · sapere · bere · vedere ────────────────────────────────────────────
@@ -403,17 +417,18 @@
   ),
   "davo · sapevo · bevevo · vedevo (dare/sapere: regolare; bere: tema bev- da bibere; vedere: regolare)",
   "dato · saputo · bevuto · visto (avere)",
+  "darò · saprò · berrò · vedrò (dare: regolare; sapere: sapr-; bere: berr-; vedere: vedr-)",
 )
 
-] // end columns
-
 // ── footer (conjugation pages) ────────────────────────────────────────────────
-#v(1fr)
-#line(length: 100%, stroke: 0.4pt + border)
-#v(3pt)
-#text(size: 7pt, fill: ink-sec)[
-  *Passato prossimo:* ausiliare (avere o essere) + participio passato. Con *essere* il participio concorda in genere e numero con il soggetto. Verbi regolari: -are → -ato · -ere → -uto · -ire → -ito. Irregolari: fare → fatto · essere → stato. #h(1em) *Notation x/y:* x = maskulin, y = feminin (z.B. vestito/a, stati/e).
+#place(bottom + left, scope: "parent", float: true)[
+  #line(length: 100%, stroke: 0.4pt + border)
+  #v(3pt)
+  #text(size: 7pt, fill: ink-sec)[
+    *Passato prossimo:* ausiliare (avere o essere) + participio passato. Con *essere* il participio concorda in genere e numero con il soggetto. Verbi regolari: -are → -ato · -ere → -uto · -ire → -ito. Irregolari: fare → fatto · essere → stato.]
 ]
+
+] // end columns
 
 // ── vocabulary page ───────────────────────────────────────────────────────────
 #pagebreak()
