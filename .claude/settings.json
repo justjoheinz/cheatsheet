@@ -1,0 +1,5 @@
+{
+  "enabledPlugins": {
+    "typst-plugin@agentic-plugins": true
+  }
+}
