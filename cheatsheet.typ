@@ -1205,130 +1205,109 @@
 #v(7pt)
 
 #columns(2, gutter: 0.9cm)[
+#set text(size: 7.5pt)
 
-#vocab-group("0 – 19", (
-  ("0 · zero",          "null"),
-  ("1 · uno",           "eins",       "una (f.) — una casa, un ragazzo"),
-  ("2 · due",           "zwei"),
-  ("3 · tre",           "drei"),
-  ("4 · quattro",       "vier"),
-  ("5 · cinque",        "fünf"),
-  ("6 · sei",           "sechs"),
-  ("7 · sette",         "sieben"),
-  ("8 · otto",          "acht"),
-  ("9 · nove",          "neun"),
-  ("10 · dieci",        "zehn"),
-  ("11 · undici",       "elf"),
-  ("12 · dodici",       "zwölf"),
-  ("13 · tredici",      "dreizehn"),
-  ("14 · quattordici",  "vierzehn"),
-  ("15 · quindici",     "fünfzehn"),
-  ("16 · sedici",       "sechzehn"),
-  ("17 · diciassette",  "siebzehn"),
-  ("18 · diciotto",     "achtzehn"),
-  ("19 · diciannove",   "neunzehn"),
-))
-
-#vocab-group("20 – 29", (
-  ("20 · venti",        "zwanzig"),
-  ("21 · ventuno",      "einundzwanzig",   "venti + uno → Elision: ventuno (nicht ventiuno)"),
-  ("22 · ventidue",     "zweiundzwanzig"),
-  ("23 · ventitré",     "dreiundzwanzig",  "Akzent auf -é: ventitré"),
-  ("24 · ventiquattro", "vierundzwanzig"),
-  ("25 · venticinque",  "fünfundzwanzig"),
-  ("26 · ventisei",     "sechsundzwanzig"),
-  ("27 · ventisette",   "siebenundzwanzig"),
-  ("28 · ventotto",     "achtundzwanzig",  "venti + otto → Elision: ventotto (nicht ventiotto)"),
-  ("29 · ventinove",    "neunundzwanzig"),
-))
+// 0–10: Kardinal + unregelmäßige Ordinalzahlen
+#text(size: 6.5pt, weight: 500, tracking: 0.1em, fill: accent)[0 – 10]
+#v(4pt)
+#table(
+  columns: (1.2cm, 1fr, 1fr),
+  align: left,
+  inset: (x: 4pt, y: 2.5pt),
+  stroke: (_, y) => (
+    top: none, left: none, right: none,
+    bottom: if y == 0 { 0.7pt + ink } else { 0.3pt + border },
+  ),
+  fill: (_, y) => if y == 0 { surface } else { white },
+  table.header(
+    text(size: 6pt, weight: 500, tracking: 0.08em, fill: ink-sec)[NR.],
+    text(size: 6pt, weight: 500, tracking: 0.08em, fill: ink-sec)[KARDINAL],
+    text(size: 6pt, weight: 500, tracking: 0.08em, fill: ink-sec)[ORDINAL (M.)],
+  ),
+  [0],  [zero],       [—],
+  [1],  [uno · una],  [primo],
+  [2],  [due],        [secondo],
+  [3],  [tre],        [terzo],
+  [4],  [quattro],    [quarto],
+  [5],  [cinque],     [quinto],
+  [6],  [sei],        [sesto],
+  [7],  [sette],      [settimo],
+  [8],  [otto],       [ottavo],
+  [9],  [nove],       [nono],
+  [10], [dieci],      [decimo],
+)
 
 #colbreak()
 
-#vocab-group("Zehner", (
-  ("30 · trenta",       "dreißig"),
-  ("40 · quaranta",     "vierzig"),
-  ("50 · cinquanta",    "fünfzig"),
-  ("60 · sessanta",     "sechzig"),
-  ("70 · settanta",     "siebzig"),
-  ("80 · ottanta",      "achtzig"),
-  ("90 · novanta",      "neunzig"),
-))
-
-#ann[*Elision bei Zehner + uno / otto:* Der auslautende Vokal des Zehners fällt vor -uno und -otto weg — ventuno, ventotto, trentuno, trentotto usw. Bei allen anderen Einern bleibt er erhalten: ventidue, ventisei …]
+// 11–19: Kardinal + Ordinalregel
+#text(size: 6.5pt, weight: 500, tracking: 0.1em, fill: accent)[11 – 19]
 #v(4pt)
-#ann[*Akzent auf -tré:* Alle zusammengesetzten Zahlen mit drei tragen einen Akzent auf dem -é: ventitré, trentatré, quarantatré …]
+#table(
+  columns: (1.2cm, 1fr, 1fr),
+  align: left,
+  inset: (x: 4pt, y: 2.5pt),
+  stroke: (_, y) => (
+    top: none, left: none, right: none,
+    bottom: if y == 0 { 0.7pt + ink } else { 0.3pt + border },
+  ),
+  fill: (_, y) => if y == 0 { surface } else { white },
+  table.header(
+    text(size: 6pt, weight: 500, tracking: 0.08em, fill: ink-sec)[NR.],
+    text(size: 6pt, weight: 500, tracking: 0.08em, fill: ink-sec)[KARDINAL],
+    text(size: 6pt, weight: 500, tracking: 0.08em, fill: ink-sec)[ORDINAL (M.)],
+  ),
+  [11], [undici],      [undicesimo],
+  [12], [dodici],      [dodicesimo],
+  [13], [tredici],     [tredicesimo],
+  [14], [quattordici], [quattordicesimo],
+  [15], [quindici],    [quindicesimo],
+  [16], [sedici],      [sedicesimo],
+  [17], [diciassette], [diciassettesimo],
+  [18], [diciotto],    [diciottesimo],
+  [19], [diciannove],  [diciannovesimo],
+)
+#v(4pt)
+#ann[*Ordinal ab 11°:* Kardinalzahl + -esimo/a (letzter Vokal fällt weg) — undicesimo, dodicesimo …]
+
+#v(6pt)
+
+// Zehner & Größenordnungen
+#text(size: 6.5pt, weight: 500, tracking: 0.1em, fill: accent)[ZEHNER · GRÖSSENORDNUNGEN]
+#v(4pt)
+#table(
+  columns: (1.2cm, 1fr, 1fr),
+  align: left,
+  inset: (x: 4pt, y: 2.5pt),
+  stroke: (_, y) => (
+    top: none, left: none, right: none,
+    bottom: if y == 0 { 0.7pt + ink } else { 0.3pt + border },
+  ),
+  fill: (_, y) => if y == 0 { surface } else { white },
+  table.header(
+    text(size: 6pt, weight: 500, tracking: 0.08em, fill: ink-sec)[NR.],
+    text(size: 6pt, weight: 500, tracking: 0.08em, fill: ink-sec)[KARDINAL],
+    text(size: 6pt, weight: 500, tracking: 0.08em, fill: ink-sec)[ORDINAL (M.)],
+  ),
+  [20],    [venti],       [ventesimo],
+  [21],    [ventuno #text(fill: ink-sec, size: 6.5pt)[¹]],   [ventunesimo],
+  [22],    [ventidue],    [ventiduesimo],
+  [23],    [ventitré #text(fill: ink-sec, size: 6.5pt)[²]],  [ventitreesimo],
+  [30],    [trenta],      [trentesimo],
+  [40],    [quaranta],    [quarantesimo],
+  [50],    [cinquanta],   [cinquantesimo],
+  [60],    [sessanta],    [sessantesimo],
+  [70],    [settanta],    [settantesimo],
+  [80],    [ottanta],     [ottantesimo],
+  [90],    [novanta],     [novantesimo],
+  [100],   [cento],       [centesimo],
+  [1.000], [mille],       [millesimo],
+)
+#v(4pt)
+#ann[*¹ Elision:* Zehner + uno/otto → letzter Vokal fällt weg: ventuno, ventotto, trentuno, trentotto … Bei allen anderen Einern bleibt er: ventidue, ventisei …]
+#v(4pt)
+#ann[*² Akzent auf -tré:* ventitré, trentatré, quarantatré … Ordinal: Akzent fällt weg, -e bleibt — ventitreesimo]
+#v(4pt)
+#ann[*Ordinalzahlen kongruieren wie Adjektive* — Endung richtet sich nach Genus und Numerus des Bezugsnomens: primo (m. sg.) · prima (f. sg.) · primi (m. pl.) · prime (f. pl.) · *Abkürzung:* 1° (m.) · 1ª (f.)]
 
 ] // end numeri columns
-
-// ── ordinalzahlen ─────────────────────────────────────────────────────────────
-#v(4pt)
-#line(length: 100%, stroke: 0.4pt + border)
-#v(5pt)
-#text(size: 6.5pt, weight: 500, tracking: 0.1em, fill: accent)[ORDINALZAHLEN]
-#v(5pt)
-
-#grid(columns: (1fr, 1fr), gutter: 0.9cm,
-  block(breakable: false)[
-    #text(size: 7pt, weight: 500)[1° – 10°: unregelmäßig]
-    #v(3pt)
-    #set text(size: 7.5pt)
-    #table(
-      columns: (1cm, 1fr),
-      align: left,
-      inset: (x: 4pt, y: 2.5pt),
-      stroke: (_, y) => (
-        top: none, left: none, right: none,
-        bottom: if y == 0 { 0.7pt + ink } else { 0.3pt + border },
-      ),
-      fill: (_, y) => if y == 0 { surface } else { white },
-      table.header(
-        text(size: 6pt, weight: 500, tracking: 0.08em, fill: ink-sec)[NR.],
-        text(size: 6pt, weight: 500, tracking: 0.08em, fill: ink-sec)[FORM],
-      ),
-      [1°], text(weight: 600, fill: accent)[primo/a],
-      [2°], text(weight: 600, fill: accent)[secondo/a],
-      [3°], text(weight: 600, fill: accent)[terzo/a],
-      [4°], text(weight: 600, fill: accent)[quarto/a],
-      [5°], text(weight: 600, fill: accent)[quinto/a],
-      [6°], text(weight: 600, fill: accent)[sesto/a],
-      [7°], text(weight: 600, fill: accent)[settimo/a],
-      [8°], text(weight: 600, fill: accent)[ottavo/a],
-      [9°], text(weight: 600, fill: accent)[nono/a],
-      [10°], text(weight: 600, fill: accent)[decimo/a],
-    )
-  ],
-  block(breakable: false)[
-    #text(size: 7pt, weight: 500)[Ab 11°: Kardinalzahl − letzter Vokal + -esimo/a]
-    #v(4pt)
-    #set text(size: 7pt)
-    #table(
-      columns: (1fr, 1fr),
-      align: left,
-      inset: (x: 4pt, y: 2.5pt),
-      stroke: (_, y) => (
-        top: none, left: none, right: none,
-        bottom: if y == 0 { 0.7pt + ink } else { 0.3pt + border },
-      ),
-      fill: (_, y) => if y == 0 { surface } else { white },
-      table.header(
-        text(size: 6pt, weight: 500, tracking: 0.08em, fill: ink-sec)[KARDINAL],
-        text(size: 6pt, weight: 500, tracking: 0.08em, fill: ink-sec)[ORDINAL],
-      ),
-      [undici],    [undicesimo/a],
-      [dodici],    [dodicesimo/a],
-      [venti],     [ventesimo/a],
-      [ventuno],   [ventunesimo/a],
-      [ventitré],  [ventitreesimo/a],
-      [trenta],    [trentesimo/a],
-      [cento],     [centesimo/a],
-      [mille],     [millesimo/a],
-    )
-    #v(4pt)
-    #text(size: 7pt, fill: ink-sec)[*Kongruenz:* wie Adjektiv — primo · prima · primi · prime]
-    #linebreak()
-    #text(size: 7pt, fill: ink-sec)[*-tré:* Akzent fällt weg, -e bleibt — ventitré → ventitreesimo]
-    #linebreak()
-    #text(size: 7pt, fill: ink-sec)[*Abkürzung:* 1° (m.) · 1ª (f.) · il 3° piano · la prima volta]
-  ],
-)
 
