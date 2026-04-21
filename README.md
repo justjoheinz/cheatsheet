@@ -1,12 +1,17 @@
 # Italienisch-Cheatsheet
 
-Ein druckbares A4-PDF für deutschsprachige Lernende der italienischen Sprache. Der Fokus liegt auf Verbkonjugationen und praktischem Wortschatz.
+Druckbare A4-PDFs für deutschsprachige Lernende der italienischen Sprache.
 
-**[→ cheatsheet.pdf](cheatsheet.pdf)**
+| PDF | Inhalt |
+|---|---|
+| [cheatsheet.pdf](cheatsheet.pdf) | Verbkonjugationen, Wortschatz, Präpositionen, Tempi verbali (6 Seiten) |
+| [letteratura.pdf](letteratura.pdf) | Literatur- und Lesevokabular, Buchmarkt, digitale Formate (3 Seiten) |
+| [orientierung.pdf](orientierung.pdf) | Wegbeschreibungen, Straßen, Orte, öffentlicher Verkehr (2 Seiten) |
+| [arte.pdf](arte.pdf) | Museum, Kunstwerke, Stile, Künstler (2 Seiten) |
 
-## Inhalt
+## Inhalt — cheatsheet.pdf
 
-- **Verbkonjugationen** — Presente, Imperfetto, Passato prossimo und Futuro semplice für regelmäßige und unregelmäßige Verben
+- **Verbkonjugationen** — Presente, Imperfetto, Passato prossimo für regelmäßige und unregelmäßige Verben
 - **Vocabolario** — thematisch gruppierter Wortschatz (Kommunikation, Bewegung, Alltag, Gefühle u.v.m.) sowie Reflexivverben
 - **Parole utili** — Adverbien, Konjunktionen, Fragewörter und Ortsangaben
 - **Präpositionen** — artikulierte Präpositionen (Kontraktion) und deren Verwendung
@@ -18,4 +23,7 @@ Erfordert [Typst](https://typst.app) 0.14+:
 
 ```bash
 typst compile cheatsheet.typ
+typst compile letteratura.typ
+typst compile orientierung.typ
+typst compile arte.typ
 ```

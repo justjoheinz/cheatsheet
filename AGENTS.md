@@ -2,14 +2,36 @@
 
 ## Project
 
-Printable A4 PDF cheatsheet for German speakers learning Italian verb conjugations.
-Source: `cheatsheet.typ` → compile to `cheatsheet.pdf`.
+Printable A4 PDF cheatsheets for German speakers learning Italian.
+Each `.typ` file compiles to a same-named `.pdf`.
 
 ```
 typst compile cheatsheet.typ
+typst compile letteratura.typ
 ```
 
 Typst 0.14+ required (`brew install typst`).
+
+### Source files
+
+| File | Content |
+|---|---|
+| `shared.typ` | Palette, template function, all renderer functions — imported by every cheatsheet |
+| `cheatsheet.typ` | Verb conjugations, vocabulary, grammar rules (6 pages) |
+| `letteratura.typ` | Literature & reading vocabulary (3 pages) |
+
+### Starting a new cheatsheet
+
+```typst
+#import "shared.typ": *
+#show: cheatsheet
+
+#page-title[Titolo][SOTTOTITOLO · SEZIONE]
+
+#columns(2, gutter: 0.9cm)[
+// content
+] // end columns
+```
 
 ---
 
@@ -18,14 +40,30 @@ Typst 0.14+ required (`brew install typst`).
 Dieter Rams principles applied to print. Key rules:
 
 - Font: `("Helvetica Neue", "Helvetica", "Noto Sans", "Arial")` — 8pt body; Noto Sans is for the Typst web version, the warning about it not being installed locally is harmless
-- Accent color `#e8420a` (Braun orange) on verb names and group labels — nowhere else
 - Table style: horizontal rules only, no vertical strokes, no alternating fills
 - Header row fill: `#f0efea`; body text: `#1a1a1a`; secondary text: `#6a6a66`; borders: `#d4d3cc`
 - Two-column A4 layout via `#columns(2, gutter: 0.9cm)`; page count is not a constraint
 
+### Typographic hierarchy
+
+Four levels. The decision rule: **accent = primary label for content; ink-sec = structural or classifier**.
+
+| Level | Role | Size | Weight | Tracking | Case | Fill |
+|---|---|---|---|---|---|---|
+| L1 — Page title | one per page | 11pt | 600 | 0.03em | Title | `ink` |
+| L1 — Page subtitle | inline after title via `#h(10pt)` | 7pt | 500 | 0.1em | UPPER | `ink-sec` |
+| L2 — Content block name | names the main subject of a standalone block (tense, preposition) | 9pt | 600 | — | Title | `accent` |
+| L3 — Category label | names a group of related items (vocab group, pronunciation category); no separator rule above | 6.5pt | 500 | 0.1em | UPPER | `accent` |
+| L4 — Section divider | structural break within a page; always preceded by `#line(length: 100%, stroke: 0.4pt + border)` | 6.5pt | 500 | 0.1em | UPPER | `ink-sec` |
+| L4 — Block classifier | describes the type/group of the block below; appears above an L2 label (verb group type) | 6.5pt | 500 | 0.1em | UPPER | `ink-sec` |
+
+**Identifying signal**: a separator `#line(...)` above a label → L4 (ink-sec). No separator, names the subject → accent (L2 or L3 by size). Classifies what follows → L4 (ink-sec).
+
 ---
 
 ## Palette variables
+
+Defined in `shared.typ`. Import via `#import "shared.typ": *`.
 
 ```typst
 #let ink      = rgb("#1a1a1a")
@@ -38,6 +76,8 @@ Dieter Rams principles applied to print. Key rules:
 ---
 
 ## Renderer functions
+
+All defined in `shared.typ`. Available after `#import "shared.typ": *`.
 
 ### `#verb-section` — one verb, all three tenses
 
@@ -145,29 +185,41 @@ Each rule is a 2-tuple: rule label (weight 500) + italic example sentence.
 
 Renders body text in `ink-sec` at 7pt. Used for footnotes below verb sections.
 
+### `#page-title` — page header
+
+```typst
+#page-title[Titolo][SOTTOTITOLO]
+```
+
+Renders L1 title + subtitle inline, followed by a `0.6pt + ink` separator line and spacing.
+Use at the top of every page. Exception: Pronuncia page in `cheatsheet.typ` uses a lighter
+`0.3pt + border` line — kept inline there.
+
 ---
 
-## Document structure (6 pages)
+## Document structure
 
-### Pages 1–2: Verbi Italiani — Coniugazione
+### cheatsheet.typ (6 pages)
+
+#### Pages 1–2: Verbi Italiani — Coniugazione
 
 Two-column conjugation tables. All `#verb-section` and `#verb-compare` calls.
 
 Footer note: Passato prossimo formation rules + `·` notation explanation (`x/y = maskulin/feminin`).
 
-### Page 3: Vocabolario Comune — Verbi Frequenti
+#### Page 3: Vocabolario Comune — Verbi Frequenti
 
 Two-column `#vocab-group` calls. Ends with a reflexive verb footnote via `#ann`.
 
-### Page 4: Parole Utili
+#### Page 4: Parole Utili
 
 Two-column `#vocab-group` calls for function words (adverbs, conjunctions, indefinites, place words).
 
-### Page 5: Preposizioni Articolate
+#### Page 5: Preposizioni Articolate
 
 Full contraction grid (preposition × article), followed by a two-column section "Verwendung der Präpositionen" using `#prep-entry`. `#colbreak()` placed before `su` to balance columns.
 
-### Page 6: I Tempi Verbali
+#### Page 6: I Tempi Verbali
 
 Two-column `#tense-block` calls for the three tenses, followed by:
 - Imperfetto vs. Passato prossimo contrast section (two-column inline blocks)
@@ -175,6 +227,20 @@ Two-column `#tense-block` calls for the three tenses, followed by:
 - Imperativo — 2. Person Singular (tu): formation table + irregular forms table
 - Imperativo voi
 - Pronomi oggetto diretto: pronoun table + Passato prossimo agreement rules
+
+### letteratura.typ (3 pages)
+
+#### Page 1: Il Libro
+
+Two-column `#vocab-group` calls: Physisches Buch, Struktur, Personen & Rollen (Text), Branche & Berufe, Gattungen. Nouns include article (`"il romanzo"`, `"la pagina"`).
+
+#### Page 2: Contenuto & Racconto
+
+Two-column `#vocab-group` calls: Trama & Thema, Erzählstruktur, Stil, Lektüre & Verstehen.
+
+#### Page 3: Media & Lesepraxis
+
+Two-column `#vocab-group` calls: Zeitungen & Magazine, Erscheinungsform, Buchmarkt, Kritik & Empfehlung, Bibliothek & Buchhandlung, Digitale Formate.
 
 ---
 
