@@ -4,7 +4,8 @@ Druckbare A4-PDFs für deutschsprachige Lernende der italienischen Sprache.
 
 | PDF | Inhalt |
 |---|---|
-| [cheatsheet.pdf](cheatsheet.pdf) | Verbkonjugationen, Wortschatz, Präpositionen, Tempi verbali (6 Seiten) |
+| [cheatsheet.pdf](cheatsheet.pdf) | Verbkonjugationen, Wortschatz, Präpositionen, Tempi verbali (5 Seiten) |
+| [parole.pdf](parole.pdf) | Adverbien, Konjunktionen, Indefinita, Fragewörter, Ort & Richtung (1 Seite) |
 | [letteratura.pdf](letteratura.pdf) | Literatur- und Lesevokabular, Buchmarkt, digitale Formate (3 Seiten) |
 | [orientierung.pdf](orientierung.pdf) | Wegbeschreibungen, Straßen, Orte, öffentlicher Verkehr (2 Seiten) |
 | [arte.pdf](arte.pdf) | Museum, Kunstwerke, Stile, Künstler (2 Seiten) |
@@ -22,8 +23,5 @@ Druckbare A4-PDFs für deutschsprachige Lernende der italienischen Sprache.
 Erfordert [Typst](https://typst.app) 0.14+:
 
 ```bash
-typst compile cheatsheet.typ
-typst compile letteratura.typ
-typst compile orientierung.typ
-typst compile arte.typ
+make
 ```
