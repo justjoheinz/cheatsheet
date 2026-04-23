@@ -19,7 +19,7 @@ const CheatsheetSchema = z.object({
   title: z.string().describe("L1 page title extracted from first #page-title"),
   subtitle: z
     .string()
-    .describe("L1 subtitle extracted from first #page-title"),
+    .describe("L1 subtitle extracted from first #page-title (use middot · as separator)"),
   topic: z
     .enum([
       "Grammatik",
@@ -50,6 +50,7 @@ function extractPageTitle(
   source: string
 ): { title: string; subtitle: string } | null {
   // Match: #page-title[...][...]
+  // Convention: subtitle uses middot (·) as separator, not plus (+)
   const match = source.match(/#page-title\[([^\]]*)\]\[([^\]]*)\]/);
   if (!match) return null;
   return { title: match[1].trim(), subtitle: match[2].trim() };

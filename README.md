@@ -2,23 +2,23 @@
 
 Druckbare A4-PDFs für deutschsprachige Lernende der italienischen Sprache.
 
-| PDF | Inhalt |
-|---|---|
-| [cheatsheet.pdf](cheatsheet.pdf) | Vocabolario Comune — Verbi frequenti |
-| [presente.pdf](presente.pdf) | Verbi Italiani — Coniugazione — Presente |
-| [condizionale.pdf](condizionale.pdf) | Condizionale Semplice — Bildung · Endungen · Ausnahmen |
-| [futuro.pdf](futuro.pdf) | Futuro Semplice — Bildung · Stammverben · Verwendung |
-| [imperativo.pdf](imperativo.pdf) | Imperativo — Befehlsform — tu & voi |
-| [imperfetto.pdf](imperfetto.pdf) | Imperfetto — Bildung · Endungen · Unregelmässige · Verwendung |
-| [passato.pdf](passato.pdf) | Passato Prossimo — Bildung · Partizip · Verwendung |
-| [parole.pdf](parole.pdf) | Parole Utili — Avverbi · Congiunzioni · Indefiniti · Luogo |
-| [letteratura.pdf](letteratura.pdf) | Il Libro — Bücher · Zeitungen · Literatur |
-| [arte.pdf](arte.pdf) | Arte — Museo · Opere · Stili |
-| [cucina.pdf](cucina.pdf) | In Cucina — Küche · Kochen · Zubereitung |
-| [numeri.pdf](numeri.pdf) | I Numeri — Kardinalzahlen · Ordinalzahlen |
-| [orientierung.pdf](orientierung.pdf) | Orientarsi — Strade · Indicazioni · Luoghi |
-| [preposizioni.pdf](preposizioni.pdf) | Preposizioni Articolate — Präposition + bestimmter artikel |
-| [pronuncia.pdf](pronuncia.pdf) | Pronuncia — Ausspracheregeln — konsonanten · Vokale · Betonung |
+| PDF | Topic | Inhalt |
+|---|---|---|
+| [cheatsheet.pdf](cheatsheet.pdf) | Grammatik & Verben | Vocabolario Comune — Verbi Frequenti |
+| [presente.pdf](presente.pdf) | Grammatik & Verben | Verbi Italiani — Coniugazione — Presente |
+| [condizionale.pdf](condizionale.pdf) | Grammatik | Condizionale Semplice — Bildung · Endungen · Ausnahmen |
+| [futuro.pdf](futuro.pdf) | Grammatik | Futuro Semplice — Bildung · Stammverben · Verwendung |
+| [imperativo.pdf](imperativo.pdf) | Grammatik | Imperativo — Befehlsform — Tu & Voi |
+| [imperfetto.pdf](imperfetto.pdf) | Grammatik | Imperfetto — Bildung · Endungen · Unregelmässige · Verwendung |
+| [passato.pdf](passato.pdf) | Grammatik | Passato Prossimo — Bildung · Partizip · Verwendung |
+| [parole.pdf](parole.pdf) | Vokabular | Parole Utili — Avverbi · Congiunzioni · Indefiniti · Luogo |
+| [letteratura.pdf](letteratura.pdf) | Literatur | Il Libro — Bücher · Zeitungen · Literatur |
+| [arte.pdf](arte.pdf) | Thematisch | Arte — Museo · Opere · Stili |
+| [cucina.pdf](cucina.pdf) | Thematisch | In Cucina — Küche · Kochen · Zubereitung |
+| [numeri.pdf](numeri.pdf) | Thematisch | I Numeri — Kardinalzahlen · Ordinalzahlen |
+| [orientierung.pdf](orientierung.pdf) | Thematisch | Orientarsi — Strade · Indicazioni · Luoghi |
+| [preposizioni.pdf](preposizioni.pdf) | Thematisch | Preposizioni Articolate — Präposition · Bestimmter Artikel |
+| [pronuncia.pdf](pronuncia.pdf) | Thematisch | Pronuncia — Ausspracheregeln — Konsonanten · Vokale · Betonung |
 
 ## Inhalt — cheatsheet.pdf
 

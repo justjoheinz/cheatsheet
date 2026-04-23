@@ -3,7 +3,7 @@
 
 // ── preposizioni articolate ───────────────────────────────────────────────────
 
-#page-title[Preposizioni Articolate][PRÄPOSITION + BESTIMMTER ARTIKEL]
+#page-title[Preposizioni Articolate][PRÄPOSITION · BESTIMMTER ARTIKEL]
 
 #set text(size: 7.5pt)
 #table(

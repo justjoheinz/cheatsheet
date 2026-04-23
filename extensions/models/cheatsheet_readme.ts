@@ -52,7 +52,11 @@ const TOPIC_ORDER: Record<Topic, number> = {
 function toTitleCase(subtitle: string): string {
   return subtitle
     .split(" · ")
-    .map((part) => part.charAt(0) + part.slice(1).toLowerCase())
+    .map((part) => 
+      part.split(/\s+/)
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(" ")
+    )
     .join(" · ");
 }
 
@@ -125,19 +129,19 @@ export const extension = {
         // Build the markdown table
         const rows = entries.map(
           (e) =>
-            `| [${e.name}.pdf](${e.name}.pdf) | ${e.title} — ${toTitleCase(e.subtitle)} |`
+            `| [${e.name}.pdf](${e.name}.pdf) | ${e.topic} | ${e.title} — ${toTitleCase(e.subtitle)} |`
         );
-        const newTable = `| PDF | Inhalt |\n|---|---|\n` + rows.join("\n") + "\n";
+        const newTable = `| PDF | Topic | Inhalt |\n|---|---|---|\n` + rows.join("\n") + "\n";
 
         // Replace the existing table block in README.md
         const readmePath = path.join(repoDir, "README.md");
         const readme = await fs.readFile(readmePath, "utf-8");
 
-        const tableRegex = /\| PDF \| Inhalt \|\n\|---\|---\|\n(?:\|[^\n]*\|\n)*/;
+        const tableRegex = /\| PDF \| (?:Topic \| )?Inhalt \|\n\|---\|(?:---\|)?---\|\n(?:\|[^\n]*\|\n)*/;
         if (!tableRegex.test(readme)) {
           throw new Error(
             "Could not locate the PDF table in README.md. " +
-              "Expected a block starting with '| PDF | Inhalt |'."
+              "Expected a block starting with '| PDF | Inhalt |' or '| PDF | Topic | Inhalt |'."
           );
         }
 
