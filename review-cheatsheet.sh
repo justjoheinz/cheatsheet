@@ -1,14 +1,14 @@
 #!/bin/bash
 # Cheatsheet review helper script
-# Usage: ./review-cheatsheet.sh <name> [commit-message]
+# Usage: ./review-cheatsheet.sh <name> [--approve|commit-message]
 
 set -e
 
 NAME="$1"
-COMMIT_MSG="${2:-}"
+APPROVE_FLAG="$2"
 
 if [ -z "$NAME" ]; then
-  echo "Usage: $0 <cheatsheet-name> [commit-message]"
+  echo "Usage: $0 <cheatsheet-name> [--approve|commit-message]"
   exit 1
 fi
 
@@ -24,6 +24,18 @@ fi
 
 echo "Updating README..."
 swamp model method run cheatsheet update-readme
+
+# Check if we should commit
+if [ "$APPROVE_FLAG" = "--approve" ]; then
+  # Auto-generate commit message
+  COMMIT_MSG="Update cheatsheet $NAME"
+elif [ -n "$APPROVE_FLAG" ]; then
+  # Use provided commit message
+  COMMIT_MSG="$APPROVE_FLAG"
+else
+  # No approval, show review instructions
+  COMMIT_MSG=""
+fi
 
 if [ -n "$COMMIT_MSG" ]; then
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -45,8 +57,11 @@ else
   echo ""
   echo "Next steps:"
   echo ""
-  echo "  ✅ APPROVE & COMMIT:"
-  echo "     ./review-cheatsheet.sh $NAME \"Add $NAME cheatsheet\""
+  echo "  ✅ APPROVE & COMMIT (auto-generated message):"
+  echo "     ./review-cheatsheet.sh $NAME --approve"
+  echo ""
+  echo "  ✅ APPROVE & COMMIT (custom message):"
+  echo "     ./review-cheatsheet.sh $NAME \"Your custom message\""
   echo ""
   echo "  🔄 REQUEST CHANGES:"
   echo "     Edit $NAME.typ, then re-run:"

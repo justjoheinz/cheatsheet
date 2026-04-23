@@ -97,7 +97,13 @@ Das Repository enthält ein `review-cheatsheet.sh` Script für den iterativen Re
 
 4. **Entscheidung treffen**:
 
-   **✅ Genehmigen und committen**:
+   **✅ Genehmigen und committen (auto-generierte Message)**:
+   ```bash
+   ./review-cheatsheet.sh nuovo --approve
+   ```
+   → Commit-Message: "Update cheatsheet nuovo"
+
+   **✅ Genehmigen und committen (custom Message)**:
    ```bash
    ./review-cheatsheet.sh nuovo "Add nuovo cheatsheet"
    ```
