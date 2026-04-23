@@ -1,7 +1,7 @@
 #import "shared.typ": *
 #show: cheatsheet
 
-#page-title[Futuro Semplice][BILDUNG · STAMMVERBEN · VERWENDUNG]
+#page-title[Futuro Semplice][FORMAZIONE · VERBI RADICALI · USO]
 
 #columns(2, gutter: 0.9cm)[
 

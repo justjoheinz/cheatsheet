@@ -3,7 +3,7 @@
 
 // ── page 1: il libro ─────────────────────────────────────────────────────────
 
-#page-title[Il Libro][BÜCHER · ZEITUNGEN · LITERATUR]
+#page-title[Il Libro][LIBRI · GIORNALI · LETTERATURA]
 
 #columns(2, gutter: 0.9cm)[
 

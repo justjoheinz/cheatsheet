@@ -3,7 +3,7 @@
 
 // ── page 1 ───────────────────────────────────────────────────────────────────
 
-#page-title[Condizionale Semplice][BILDUNG · ENDUNGEN · AUSNAHMEN]
+#page-title[Condizionale Semplice][FORMAZIONE · DESINENZE · ECCEZIONI]
 
 #columns(2, gutter: 0.9cm)[
 

@@ -1,7 +1,7 @@
 #import "shared.typ": *
 #show: cheatsheet
 
-#page-title[La Casa][GEBÄUDE · HÄUSER · MÖBEL · INNENEINRICHTUNG]
+#page-title[La Casa][EDIFICI · CASE · MOBILI · ARREDAMENTO]
 
 #columns(2, gutter: 0.9cm)[
 

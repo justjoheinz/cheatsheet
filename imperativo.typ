@@ -1,7 +1,7 @@
 #import "shared.typ": *
 #show: cheatsheet
 
-#page-title[Imperativo][BEFEHLSFORM — TU & VOI]
+#page-title[Imperativo][TU & VOI]
 
 #columns(2, gutter: 0.9cm)[
 

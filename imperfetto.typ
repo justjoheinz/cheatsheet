@@ -1,7 +1,7 @@
 #import "shared.typ": *
 #show: cheatsheet
 
-#page-title[Imperfetto][BILDUNG · ENDUNGEN · UNREGELMÄSSIGE · VERWENDUNG]
+#page-title[Imperfetto][FORMAZIONE · DESINENZE · IRREGOLARI · USO]
 
 #columns(2, gutter: 0.9cm)[
 

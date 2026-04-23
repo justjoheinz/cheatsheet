@@ -1,7 +1,7 @@
 #import "shared.typ": *
 #show: cheatsheet
 
-#page-title[Passato Prossimo][BILDUNG · PARTIZIP · VERWENDUNG]
+#page-title[Passato Prossimo][FORMAZIONE · PARTICIPIO · USO]
 
 #columns(2, gutter: 0.9cm)[
 

@@ -138,7 +138,7 @@
 // ── i tempi verbali page ──────────────────────────────────────────────────────
 #pagebreak()
 
-#page-title[I Tempi Verbali][GEBRAUCHSREGELN — PRESENTE]
+#page-title[I Tempi Verbali][REGOLE D'USO — PRESENTE]
 #v(1pt)
 
 #tense-block("Presente", "Gegenwart / Gewohnheit / nahe Zukunft", (

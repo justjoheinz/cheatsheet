@@ -3,7 +3,7 @@
 
 // ── numeri ────────────────────────────────────────────────────────────────────
 
-#page-title[I Numeri][KARDINALZAHLEN · ORDINALZAHLEN]
+#page-title[I Numeri][NUMERI CARDINALI · NUMERI ORDINALI]
 
 #columns(2, gutter: 0.9cm)[
 #set text(size: 7.5pt)

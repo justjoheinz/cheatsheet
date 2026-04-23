@@ -19,7 +19,7 @@ const CheatsheetSchema = z.object({
   title: z.string().describe("L1 page title extracted from first #page-title"),
   subtitle: z
     .string()
-    .describe("L1 subtitle extracted from first #page-title (use middot · as separator)"),
+    .describe("L1 subtitle extracted from first #page-title (use middot · as separator; Italian language only)"),
   topic: z
     .enum([
       "Grammatik",

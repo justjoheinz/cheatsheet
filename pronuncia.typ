@@ -5,7 +5,7 @@
 #let lb = "\u{5B}"
 #let rb = "\u{5D}"
 
-#page-title[Pronuncia][AUSSPRACHEREGELN — KONSONANTEN · VOKALE · BETONUNG]
+#page-title[Pronuncia][REGOLE DI PRONUNCIA — CONSONANTI · VOCALI · ACCENTO]
 
 #block(breakable: false)[
   #text(size: 6.5pt, weight: 500, tracking: 0.1em, fill: accent)[#upper[Konsonanten & Sonderzeichen]]

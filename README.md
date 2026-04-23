@@ -6,20 +6,20 @@ Druckbare A4-PDFs für deutschsprachige Lernende der italienischen Sprache.
 |---|---|---|
 | [cheatsheet.pdf](cheatsheet.pdf) | Grammatik & Verben | Vocabolario Comune — Verbi Frequenti |
 | [presente.pdf](presente.pdf) | Grammatik & Verben | Verbi Italiani — Coniugazione — Presente |
-| [condizionale.pdf](condizionale.pdf) | Grammatik | Condizionale Semplice — Bildung · Endungen · Ausnahmen |
-| [futuro.pdf](futuro.pdf) | Grammatik | Futuro Semplice — Bildung · Stammverben · Verwendung |
-| [imperativo.pdf](imperativo.pdf) | Grammatik | Imperativo — Befehlsform — Tu & Voi |
-| [imperfetto.pdf](imperfetto.pdf) | Grammatik | Imperfetto — Bildung · Endungen · Unregelmässige · Verwendung |
-| [passato.pdf](passato.pdf) | Grammatik | Passato Prossimo — Bildung · Partizip · Verwendung |
+| [condizionale.pdf](condizionale.pdf) | Grammatik | Condizionale Semplice — Formazione · Desinenze · Eccezioni |
+| [futuro.pdf](futuro.pdf) | Grammatik | Futuro Semplice — Formazione · Verbi Radicali · Uso |
+| [imperativo.pdf](imperativo.pdf) | Grammatik | Imperativo — Tu & Voi |
+| [imperfetto.pdf](imperfetto.pdf) | Grammatik | Imperfetto — Formazione · Desinenze · Irregolari · Uso |
+| [passato.pdf](passato.pdf) | Grammatik | Passato Prossimo — Formazione · Participio · Uso |
 | [parole.pdf](parole.pdf) | Vokabular | Parole Utili — Avverbi · Congiunzioni · Indefiniti · Luogo |
-| [letteratura.pdf](letteratura.pdf) | Literatur | Il Libro — Bücher · Zeitungen · Literatur |
+| [letteratura.pdf](letteratura.pdf) | Literatur | Il Libro — Libri · Giornali · Letteratura |
 | [arte.pdf](arte.pdf) | Thematisch | Arte — Museo · Opere · Stili |
-| [casa.pdf](casa.pdf) | Thematisch | La Casa — Gebäude · Häuser · Möbel · Inneneinrichtung |
-| [cucina.pdf](cucina.pdf) | Thematisch | In Cucina — Küche · Kochen · Zubereitung |
-| [numeri.pdf](numeri.pdf) | Thematisch | I Numeri — Kardinalzahlen · Ordinalzahlen |
+| [casa.pdf](casa.pdf) | Thematisch | La Casa — Edifici · Case · Mobili · Arredamento |
+| [cucina.pdf](cucina.pdf) | Thematisch | In Cucina — Cucina · Cucinare · Preparazione |
+| [numeri.pdf](numeri.pdf) | Thematisch | I Numeri — Numeri Cardinali · Numeri Ordinali |
 | [orientierung.pdf](orientierung.pdf) | Thematisch | Orientarsi — Strade · Indicazioni · Luoghi |
-| [preposizioni.pdf](preposizioni.pdf) | Thematisch | Preposizioni Articolate — Präposition · Bestimmter Artikel |
-| [pronuncia.pdf](pronuncia.pdf) | Thematisch | Pronuncia — Ausspracheregeln — Konsonanten · Vokale · Betonung |
+| [preposizioni.pdf](preposizioni.pdf) | Thematisch | Preposizioni Articolate — Preposizione · Articolo Determinativo |
+| [pronuncia.pdf](pronuncia.pdf) | Thematisch | Pronuncia — Regole Di Pronuncia — Consonanti · Vocali · Accento |
 
 ## Inhalt — cheatsheet.pdf
 

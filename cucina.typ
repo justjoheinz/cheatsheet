@@ -3,7 +3,7 @@
 
 // ── page 1: in cucina ─────────────────────────────────────────────────────────
 
-#page-title[In Cucina][KÜCHE · KOCHEN · ZUBEREITUNG]
+#page-title[In Cucina][CUCINA · CUCINARE · PREPARAZIONE]
 
 #columns(2, gutter: 0.9cm)[
 
