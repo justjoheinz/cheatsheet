@@ -4,19 +4,24 @@ Druckbare A4-PDFs für deutschsprachige Lernende der italienischen Sprache.
 
 | PDF | Inhalt |
 |---|---|
-| [cheatsheet.pdf](cheatsheet.pdf) | Verbkonjugationen, Wortschatz, Präpositionen, Tempi verbali (5 Seiten) |
-| [parole.pdf](parole.pdf) | Adverbien, Konjunktionen, Indefinita, Fragewörter, Ort & Richtung (1 Seite) |
-| [letteratura.pdf](letteratura.pdf) | Literatur- und Lesevokabular, Buchmarkt, digitale Formate (3 Seiten) |
-| [orientierung.pdf](orientierung.pdf) | Wegbeschreibungen, Straßen, Orte, öffentlicher Verkehr (2 Seiten) |
-| [arte.pdf](arte.pdf) | Museum, Kunstwerke, Stile, Künstler (2 Seiten) |
+| [cheatsheet.pdf](cheatsheet.pdf) | Verbi Italiani — Coniugazione — Presente |
+| [condizionale.pdf](condizionale.pdf) | Condizionale Semplice — Bildung · Endungen · Ausnahmen |
+| [futuro.pdf](futuro.pdf) | Futuro Semplice — Bildung · Stammverben · Verwendung |
+| [imperfetto.pdf](imperfetto.pdf) | Imperfetto — Bildung · Endungen · Unregelmässige · Verwendung |
+| [passato.pdf](passato.pdf) | Passato Prossimo — Bildung · Partizip · Verwendung |
+| [parole.pdf](parole.pdf) | Parole Utili — Avverbi · Congiunzioni · Indefiniti · Luogo |
+| [letteratura.pdf](letteratura.pdf) | Il Libro — Bücher · Zeitungen · Literatur |
+| [arte.pdf](arte.pdf) | Arte — Museo · Opere · Stili |
+| [cucina.pdf](cucina.pdf) | In Cucina — Küche · Kochen · Zubereitung |
+| [orientierung.pdf](orientierung.pdf) | Orientarsi — Strade · Indicazioni · Luoghi |
 
 ## Inhalt — cheatsheet.pdf
 
-- **Verbkonjugationen** — Presente, Imperfetto, Passato prossimo für regelmäßige und unregelmäßige Verben
+- **Verbkonjugationen** — Presente für regelmäßige und unregelmäßige Verben
 - **Vocabolario** — thematisch gruppierter Wortschatz (Kommunikation, Bewegung, Alltag, Gefühle u.v.m.) sowie Reflexivverben
 - **Parole utili** — Adverbien, Konjunktionen, Fragewörter und Ortsangaben
 - **Präpositionen** — artikulierte Präpositionen (Kontraktion) und deren Verwendung
-- **Tempi verbali** — Erklärungen zu den Zeiten, Gerundio, Imperativo und Objektpronomen
+- **Tempi verbali** — Gebrauchsregeln zum Presente, Gerundio, Imperativo
 
 ## Kompilieren
 

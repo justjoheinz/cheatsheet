@@ -3,7 +3,7 @@
 
 // ── page 1 ───────────────────────────────────────────────────────────────────
 
-#page-title[Verbi Italiani — Coniugazione][PRESENTE · IMPERFETTO · PASS. PROS. · FUTURO]
+#page-title[Verbi Italiani — Coniugazione][PRESENTE]
 
 // ── two-column body ──────────────────────────────────────────────────────────
 
@@ -13,18 +13,15 @@
 #verb-section(
   "parlare", "sprechen", "verbi in -are",
   (
-    ("io",      "parlo",    "parlavo",    "ho parlato",      "parlerò"),
-    ("tu",      "parli",    "parlavi",    "hai parlato",     "parlerai"),
-    ("lui/lei", "parla",    "parlava",    "ha parlato",      "parlerà"),
-    ("noi",     "parliamo", "parlavamo",  "abbiamo parlato", "parleremo"),
-    ("voi",     "parlate",  "parlavate",  "avete parlato",   "parlerete"),
-    ("loro",    "parlano",  "parlavano",  "hanno parlato",   "parleranno"),
+    ("io",      "parlo"),
+    ("tu",      "parli"),
+    ("lui/lei", "parla"),
+    ("noi",     "parliamo"),
+    ("voi",     "parlate"),
+    ("loro",    "parlano"),
   ),
   (
-    ("tense": "Presente",         "text": "Ogni giorno parlo con mia madre."),
-    ("tense": "Imperfetto",       "text": "Da bambino parlavo sempre italiano."),
-    ("tense": "Passato prossimo", "text": "Ieri ho parlato con il professore."),
-    ("tense": "Futuro",           "text": "Domani parlerò con il direttore."),
+    ("tense": "Presente", "text": "Ogni giorno parlo con mia madre."),
   ),
 )
 
@@ -32,18 +29,15 @@
 #verb-section(
   "ripetere", "wiederholen", "verbi in -ere",
   (
-    ("io",      "ripeto",    "ripetevo",    "ho ripetuto",      "ripeterò"),
-    ("tu",      "ripeti",    "ripetevi",    "hai ripetuto",     "ripeterai"),
-    ("lui/lei", "ripete",    "ripeteva",    "ha ripetuto",      "ripeterà"),
-    ("noi",     "ripetiamo", "ripetevamo",  "abbiamo ripetuto", "ripeteremo"),
-    ("voi",     "ripetete",  "ripetevate",  "avete ripetuto",   "ripeterete"),
-    ("loro",    "ripetono",  "ripetevano",  "hanno ripetuto",   "ripeteranno"),
+    ("io",      "ripeto"),
+    ("tu",      "ripeti"),
+    ("lui/lei", "ripete"),
+    ("noi",     "ripetiamo"),
+    ("voi",     "ripetete"),
+    ("loro",    "ripetono"),
   ),
   (
-    ("tense": "Presente",         "text": "Ripeto la domanda per chi non ha sentito."),
-    ("tense": "Imperfetto",       "text": "Il professore ripeteva sempre le stesse cose."),
-    ("tense": "Passato prossimo", "text": "Ho ripetuto l'esame la settimana scorsa."),
-    ("tense": "Futuro",           "text": "Ripeterò l'esercizio fino a capirlo."),
+    ("tense": "Presente", "text": "Ripeto la domanda per chi non ha sentito."),
   ),
 )
 
@@ -51,18 +45,15 @@
 #verb-section(
   "sentire", "hören/fühlen", "verbi in -ire (tipo I)",
   (
-    ("io",      "sento",    "sentivo",    "ho sentito",      "sentirò"),
-    ("tu",      "senti",    "sentivi",    "hai sentito",     "sentirai"),
-    ("lui/lei", "sente",    "sentiva",    "ha sentito",      "sentirà"),
-    ("noi",     "sentiamo", "sentivamo",  "abbiamo sentito", "sentiremo"),
-    ("voi",     "sentite",  "sentivate",  "avete sentito",   "sentirete"),
-    ("loro",    "sentono",  "sentivano",  "hanno sentito",   "sentiranno"),
+    ("io",      "sento"),
+    ("tu",      "senti"),
+    ("lui/lei", "sente"),
+    ("noi",     "sentiamo"),
+    ("voi",     "sentite"),
+    ("loro",    "sentono"),
   ),
   (
-    ("tense": "Presente",         "text": "Sento la musica dalla finestra."),
-    ("tense": "Imperfetto",       "text": "Sentivo un rumore strano."),
-    ("tense": "Passato prossimo", "text": "Ho sentito le tue parole."),
-    ("tense": "Futuro",           "text": "Sentirò la tua risposta domani."),
+    ("tense": "Presente", "text": "Sento la musica dalla finestra."),
   ),
 )
 
@@ -70,18 +61,15 @@
 #verb-section(
   "finire", "beenden", "verbi in -ire (tipo II, -isc-)",
   (
-    ("io",      [finisco #text(fill: ink-sec, size: 7pt)[†]],    "finivo",    "ho finito",      "finirò"),
-    ("tu",      [finisci #text(fill: ink-sec, size: 7pt)[†]],    "finivi",    "hai finito",     "finirai"),
-    ("lui/lei", [finisce #text(fill: ink-sec, size: 7pt)[†]],    "finiva",    "ha finito",      "finirà"),
-    ("noi",     "finiamo",  "finivamo",  "abbiamo finito", "finiremo"),
-    ("voi",     "finite",   "finivate",  "avete finito",   "finirete"),
-    ("loro",    [finiscono #text(fill: ink-sec, size: 7pt)[†]],  "finivano",  "hanno finito",   "finiranno"),
+    ("io",      [finisco #text(fill: ink-sec, size: 7pt)[†]]),
+    ("tu",      [finisci #text(fill: ink-sec, size: 7pt)[†]]),
+    ("lui/lei", [finisce #text(fill: ink-sec, size: 7pt)[†]]),
+    ("noi",     "finiamo"),
+    ("voi",     "finite"),
+    ("loro",    [finiscono #text(fill: ink-sec, size: 7pt)[†]]),
   ),
   (
-    ("tense": "Presente",         "text": "Finisco il lavoro alle cinque."),
-    ("tense": "Imperfetto",       "text": "Finivo sempre tardi."),
-    ("tense": "Passato prossimo", "text": "Ho finito il libro ieri."),
-    ("tense": "Futuro",           "text": "Finirò il progetto entro venerdì."),
+    ("tense": "Presente", "text": "Finisco il lavoro alle cinque."),
   ),
 )
 
@@ -93,18 +81,15 @@
 #verb-section(
   "essere", "sein", "ausiliare",
   (
-    ("io",      "sono",   "ero",      "sono stato·a",   "sarò"),
-    ("tu",      "sei",    "eri",      "sei stato·a",    "sarai"),
-    ("lui/lei", [è],      "era",      "è stato·a",      "sarà"),
-    ("noi",     "siamo",  "eravamo",  "siamo stati·e",  "saremo"),
-    ("voi",     "siete",  "eravate",  "siete stati·e",  "sarete"),
-    ("loro",    "sono",   "erano",    "sono stati·e",   "saranno"),
+    ("io",      "sono"),
+    ("tu",      "sei"),
+    ("lui/lei", [è]),
+    ("noi",     "siamo"),
+    ("voi",     "siete"),
+    ("loro",    "sono"),
   ),
   (
-    ("tense": "Presente",         "text": "Sono stanco dopo il lavoro."),
-    ("tense": "Imperfetto",       "text": "Era una bella giornata."),
-    ("tense": "Passato prossimo", "text": "Siamo stati a Roma la settimana scorsa."),
-    ("tense": "Futuro",           "text": "Sarà una bella giornata domani."),
+    ("tense": "Presente", "text": "Sono stanco dopo il lavoro."),
   ),
 )
 
@@ -116,18 +101,15 @@
 #verb-section(
   "avere", "haben", "ausiliare",
   (
-    ("io",      "ho",       "avevo",    "ho avuto",      "avrò"),
-    ("tu",      "hai",      "avevi",    "hai avuto",     "avrai"),
-    ("lui/lei", "ha",       "aveva",    "ha avuto",      "avrà"),
-    ("noi",     "abbiamo",  "avevamo",  "abbiamo avuto", "avremo"),
-    ("voi",     "avete",    "avevate",  "avete avuto",   "avrete"),
-    ("loro",    "hanno",    "avevano",  "hanno avuto",   "avranno"),
+    ("io",      "ho"),
+    ("tu",      "hai"),
+    ("lui/lei", "ha"),
+    ("noi",     "abbiamo"),
+    ("voi",     "avete"),
+    ("loro",    "hanno"),
   ),
   (
-    ("tense": "Presente",         "text": "Ho molti libri a casa."),
-    ("tense": "Imperfetto",       "text": "Avevamo un cane."),
-    ("tense": "Passato prossimo", "text": "Ha avuto problemi con il computer."),
-    ("tense": "Futuro",           "text": "Avrai più tempo il prossimo anno."),
+    ("tense": "Presente", "text": "Ho molti libri a casa."),
   ),
 )
 
@@ -135,18 +117,15 @@
 #verb-section(
   "fare", "machen/tun", "irregolare",
   (
-    ("io",      "faccio",   "facevo",    "ho fatto",      "farò"),
-    ("tu",      "fai",      "facevi",    "hai fatto",     "farai"),
-    ("lui/lei", "fa",       "faceva",    "ha fatto",      "farà"),
-    ("noi",     "facciamo", "facevamo",  "abbiamo fatto", "faremo"),
-    ("voi",     "fate",     "facevate",  "avete fatto",   "farete"),
-    ("loro",    "fanno",    "facevano",  "hanno fatto",   "faranno"),
+    ("io",      "faccio"),
+    ("tu",      "fai"),
+    ("lui/lei", "fa"),
+    ("noi",     "facciamo"),
+    ("voi",     "fate"),
+    ("loro",    "fanno"),
   ),
   (
-    ("tense": "Presente",         "text": "Faccio colazione alle sette."),
-    ("tense": "Imperfetto",       "text": "Facevo sport ogni giorno."),
-    ("tense": "Passato prossimo", "text": "Hanno fatto una passeggiata nel parco."),
-    ("tense": "Futuro",           "text": "Farò una torta per il tuo compleanno."),
+    ("tense": "Presente", "text": "Faccio colazione alle sette."),
   ),
 )
 
@@ -154,18 +133,15 @@
 #verb-section(
   "volere", "wollen", "modale",
   (
-    ("io",      "voglio",   "volevo",    "ho voluto",      "vorrò"),
-    ("tu",      "vuoi",     "volevi",    "hai voluto",     "vorrai"),
-    ("lui/lei", "vuole",    "voleva",    "ha voluto",      "vorrà"),
-    ("noi",     "vogliamo", "volevamo",  "abbiamo voluto", "vorremo"),
-    ("voi",     "volete",   "volevate",  "avete voluto",   "vorrete"),
-    ("loro",    "vogliono", "volevano",  "hanno voluto",   "vorranno"),
+    ("io",      "voglio"),
+    ("tu",      "vuoi"),
+    ("lui/lei", "vuole"),
+    ("noi",     "vogliamo"),
+    ("voi",     "volete"),
+    ("loro",    "vogliono"),
   ),
   (
-    ("tense": "Presente",         "text": "Voglio un caffè, per favore."),
-    ("tense": "Imperfetto",       "text": "Volevo studiare medicina."),
-    ("tense": "Passato prossimo", "text": "Ho voluto provare il nuovo ristorante."),
-    ("tense": "Futuro",           "text": "Vorrò sapere la tua opinione."),
+    ("tense": "Presente", "text": "Voglio un caffè, per favore."),
   ),
 )
 
@@ -173,18 +149,15 @@
 #verb-section(
   "potere", "können/dürfen", "modale",
   (
-    ("io",      "posso",    "potevo",    "ho potuto",      "potrò"),
-    ("tu",      "puoi",     "potevi",    "hai potuto",     "potrai"),
-    ("lui/lei", [può],      "poteva",    "ha potuto",      "potrà"),
-    ("noi",     "possiamo", "potevamo",  "abbiamo potuto", "potremo"),
-    ("voi",     "potete",   "potevate",  "avete potuto",   "potrete"),
-    ("loro",    "possono",  "potevano",  "hanno potuto",   "potranno"),
+    ("io",      "posso"),
+    ("tu",      "puoi"),
+    ("lui/lei", [può]),
+    ("noi",     "possiamo"),
+    ("voi",     "potete"),
+    ("loro",    "possono"),
   ),
   (
-    ("tense": "Presente",         "text": "Posso aprire la finestra?"),
-    ("tense": "Imperfetto",       "text": "Potevamo uscire prima."),
-    ("tense": "Passato prossimo", "text": "Non ho potuto dormire."),
-    ("tense": "Futuro",           "text": "Potrai venire alla festa domani?"),
+    ("tense": "Presente", "text": "Posso aprire la finestra?"),
   ),
 )
 
@@ -192,18 +165,15 @@
 #verb-section(
   "dovere", "müssen/sollen", "modale",
   (
-    ("io",      "devo",      "dovevo",    "ho dovuto",      "dovrò"),
-    ("tu",      "devi",      "dovevi",    "hai dovuto",     "dovrai"),
-    ("lui/lei", "deve",      "doveva",    "ha dovuto",      "dovrà"),
-    ("noi",     "dobbiamo",  "dovevamo",  "abbiamo dovuto", "dovremo"),
-    ("voi",     "dovete",    "dovevate",  "avete dovuto",   "dovrete"),
-    ("loro",    "devono",    "dovevano",  "hanno dovuto",   "dovranno"),
+    ("io",      "devo"),
+    ("tu",      "devi"),
+    ("lui/lei", "deve"),
+    ("noi",     "dobbiamo"),
+    ("voi",     "dovete"),
+    ("loro",    "devono"),
   ),
   (
-    ("tense": "Presente",         "text": "Devo studiare per l'esame."),
-    ("tense": "Imperfetto",       "text": "Dovevo lavorare tutto il giorno."),
-    ("tense": "Passato prossimo", "text": "Ho dovuto chiamare il medico."),
-    ("tense": "Futuro",           "text": "Dovrò partire presto domani mattina."),
+    ("tense": "Presente", "text": "Devo studiare per l'esame."),
   ),
 )
 
@@ -211,18 +181,15 @@
 #verb-section(
   "dire", "sagen", "irregolare",
   (
-    ("io",      "dico",    "dicevo",    "ho detto",      "dirò"),
-    ("tu",      "dici",    "dicevi",    "hai detto",     "dirai"),
-    ("lui/lei", "dice",    "diceva",    "ha detto",      "dirà"),
-    ("noi",     "diciamo", "dicevamo",  "abbiamo detto", "diremo"),
-    ("voi",     "dite",    "dicevate",  "avete detto",   "direte"),
-    ("loro",    "dicono",  "dicevano",  "hanno detto",   "diranno"),
+    ("io",      "dico"),
+    ("tu",      "dici"),
+    ("lui/lei", "dice"),
+    ("noi",     "diciamo"),
+    ("voi",     "dite"),
+    ("loro",    "dicono"),
   ),
   (
-    ("tense": "Presente",         "text": "Dico sempre la verità."),
-    ("tense": "Imperfetto",       "text": "Diceva sempre bugie."),
-    ("tense": "Passato prossimo", "text": "Cosa hai detto?"),
-    ("tense": "Futuro",           "text": "Ti dirò la verità quando sarà il momento."),
+    ("tense": "Presente", "text": "Dico sempre la verità."),
   ),
 )
 
@@ -243,9 +210,6 @@
     ("voi",     "andate",  "venite",   "uscite",  "state"),
     ("loro",    "vanno",   "vengono",  "escono",  "stanno"),
   ),
-  "andavo · venivo · uscivo · stavo (regolare dal tema)",
-  "andato·a · venuto·a · uscito·a · stato·a (essere — accordo). stato·a = stesso participio di essere; il contesto distingue.",
-  "andrò · verrò · uscirò · starò (stem irregolare: andr-, verr-, uscir-, star-)",
 )
 
 // ── dare · sapere · bere · vedere ────────────────────────────────────────────
@@ -265,18 +229,7 @@
     ("voi",     "date",    "sapete",   "bevete",  "vedete"),
     ("loro",    "danno",   "sanno",    "bevono",  "vedono"),
   ),
-  "davo · sapevo · bevevo · vedevo (dare/sapere: regolare; bere: tema bev- da bibere; vedere: regolare)",
-  "dato · saputo · bevuto · visto (avere)",
-  "darò · saprò · berrò · vedrò (dare: regolare; sapere: sapr-; bere: berr-; vedere: vedr-)",
 )
-
-// ── footer (conjugation pages) ────────────────────────────────────────────────
-#place(bottom + left, scope: "parent", float: true)[
-  #line(length: 100%, stroke: 0.4pt + border)
-  #v(3pt)
-  #text(size: 7pt, fill: ink-sec)[
-    *Passato prossimo:* ausiliare (avere o essere) + participio passato. Con *essere* il participio concorda in genere e numero con il soggetto. Verbi regolari: -are → -ato · -ere → -uto · -ire → -ito. Irregolari: fare → fatto · essere → stato.]
-]
 
 ] // end columns
 
@@ -528,77 +481,21 @@
 // ── i tempi verbali page ──────────────────────────────────────────────────────
 #pagebreak()
 
-#page-title[I Tempi Verbali][GEBRAUCHSREGELN — PRESENTE · IMPERFETTO · PASSATO PROSSIMO]
+#page-title[I Tempi Verbali][GEBRAUCHSREGELN — PRESENTE]
 #v(1pt)
 
-#grid(columns: (1fr, 1fr), gutter: 0.9cm,
-  [
-    #tense-block("Presente", "Gegenwart / Gewohnheit / nahe Zukunft", (
-      ("Gegenwärtiger Zustand oder Handlung",
-       "Sono stanco. · Lavoro in ufficio."),
-      ("Gewohnheit oder Wiederholung",
-       "Ogni mattina bevo un caffè."),
-      ("Allgemeine Wahrheit",
-       "Il sole sorge a est."),
-      ("Nahe Zukunft mit Zeitangabe",
-       "Domani vado a Roma."),
-      ("Seit-Konstruktion: da + Presente",
-       "Studio l'italiano da due anni. (Ich lerne seit zwei Jahren Italienisch — und tue es noch.)"),
-    ))
-  ],
-  [
-    #tense-block("Passato prossimo", "Abgeschlossenes Ereignis", (
-      ("Einmaliges abgeschlossenes Ereignis",
-       "Ieri ho chiamato Marco."),
-      ("Handlung mit Ergebnis im Vordergrund",
-       "Ho mangiato. (Ich habe gegessen — bin satt.)"),
-      ("Ereignis zu einem bestimmten Zeitpunkt",
-       "Due anni fa ho iniziato a studiare l'italiano."),
-      ("Kurzfristig zurückliegende Handlung",
-       "Oggi mi sono svegliato tardi."),
-    ))
-
-    #tense-block("Imperfetto", "Vergangener Zustand / Gewohnheit / Hintergrund", (
-      ("Vergangener Zustand oder Eigenschaft",
-       "Era molto stanco. · Da bambino abitavo a Milano."),
-      ("Wiederkehrende Handlung in der Vergangenheit",
-       "Ogni estate andavamo al mare."),
-      ("Hintergrundgeschehen (parallel zu einem Ereignis)",
-       "Mentre dormivo, è arrivato Marco."),
-      ("Höfliche Abschwächung",
-       "Volevo un caffè. (Ich hätte gerne einen Kaffee.)"),
-    ))
-  ],
-) // end tense grid
-
-// ── contrast section ──────────────────────────────────────────────────────────
-#v(4pt)
-#line(length: 100%, stroke: 0.4pt + border)
-#v(5pt)
-#text(size: 6.5pt, weight: 500, tracking: 0.1em, fill: ink-sec)[IMPERFETTO VS. PASSATO PROSSIMO]
-#v(5pt)
-
-#columns(2, gutter: 0.9cm)[
-
-#block[
-  #text(size: 7pt, weight: 500)[Passato prossimo = Vordergrund]
-  #linebreak()
-  #text(size: 7pt)[Einmaliges, abgeschlossenes Ereignis — was *passierte*.]
-  #v(2pt)
-  #text(size: 7pt, weight: 500)[Imperfetto = Hintergrund]
-  #linebreak()
-  #text(size: 7pt)[Andauernder Zustand oder laufende Handlung — was gerade *war* oder *lief*.]
-]
-
-#block[
-  #text(size: 7pt, weight: 500)[Klassisches Muster:]
-  #linebreak()
-  #text(size: 7pt, style: "italic")[Mentre #text(fill: accent)[leggevo] (Imp.), Marco #text(fill: accent)[è arrivato] (P.pr.).]
-  #v(2pt)
-  #text(size: 7pt, style: "italic")[Da bambino #text(fill: accent)[andavo] (Imp.) spesso al parco, ma ieri #text(fill: accent)[sono andato] (P.pr.) al cinema.]
-]
-
-] // end contrast columns
+#tense-block("Presente", "Gegenwart / Gewohnheit / nahe Zukunft", (
+  ("Gegenwärtiger Zustand oder Handlung",
+   "Sono stanco. · Lavoro in ufficio."),
+  ("Gewohnheit oder Wiederholung",
+   "Ogni mattina bevo un caffè."),
+  ("Allgemeine Wahrheit",
+   "Il sole sorge a est."),
+  ("Nahe Zukunft mit Zeitangabe",
+   "Domani vado a Roma."),
+  ("Seit-Konstruktion: da + Presente",
+   "Studio l'italiano da due anni. (Ich lerne seit zwei Jahren Italienisch — und tue es noch.)"),
+))
 
 // ── gerundio & progressivo ────────────────────────────────────────────────────
 #v(4pt)
@@ -744,66 +641,6 @@
   ],
 )
 ] // end imperativo voi
-
-// ── pronomi oggetto diretto ───────────────────────────────────────────────────
-#v(8pt)
-#line(length: 100%, stroke: 0.4pt + border)
-#v(5pt)
-#text(size: 6.5pt, weight: 500, tracking: 0.1em, fill: accent)[PRONOMI OGGETTO DIRETTO]
-#v(5pt)
-
-#grid(columns: (1fr, 1fr), gutter: 0.9cm,
-  block(breakable: false)[
-    #set text(size: 7.5pt)
-    #table(
-      columns: (1.2cm, 1fr),
-      align: left,
-      inset: (x: 4pt, y: 2.5pt),
-      stroke: (_, y) => (
-        top: none, left: none, right: none,
-        bottom: if y == 0 { 0.7pt + ink } else { 0.3pt + border },
-      ),
-      fill: (_, y) => if y == 0 { surface } else { white },
-      table.header(
-        text(size: 6pt, weight: 500, tracking: 0.08em, fill: ink-sec)[PRONOME],
-        text(size: 6pt, weight: 500, tracking: 0.08em, fill: ink-sec)[DEUTSCH],
-      ),
-      text(weight: 600, fill: accent)[mi], [mich],
-      text(weight: 600, fill: accent)[ti], [dich],
-      text(weight: 600, fill: accent)[lo], [ihn / es (m.) — l' vor Vokal/h],
-      text(weight: 600, fill: accent)[la], [sie / es (f.) — l' vor Vokal/h],
-      text(weight: 600, fill: accent)[ci], [uns],
-      text(weight: 600, fill: accent)[vi], [euch],
-      text(weight: 600, fill: accent)[li], [sie (m. Pl.)],
-      text(weight: 600, fill: accent)[le], [sie (f. Pl.)],
-    )
-    #v(3pt)
-    #text(size: 7pt, fill: ink-sec)[Position: immer vor dem konjugierten Verb.]
-  ],
-  block(breakable: false)[
-    #text(size: 7pt, weight: 500)[Mit Passato prossimo: Partizip kongruiert mit Pronomen]
-    #v(4pt)
-    #block(inset: (bottom: 4pt))[
-      #text(size: 7pt, weight: 500)[lo / la → l' + Partizip in Genus/Numerus]
-      #linebreak()
-      #text(size: 7pt, style: "italic", fill: ink-sec)[Hai visto Marco? → Sì, #text(fill: ink)[l'ho] #text(fill: accent)[visto].]
-      #linebreak()
-      #text(size: 7pt, style: "italic", fill: ink-sec)[Hai visto Maria? → Sì, #text(fill: ink)[l'ho] #text(fill: accent)[vista].]
-    ]
-    #block(inset: (bottom: 4pt))[
-      #text(size: 7pt, weight: 500)[li / le → kein Apostroph]
-      #linebreak()
-      #text(size: 7pt, style: "italic", fill: ink-sec)[Hai comprato i libri? → #text(fill: ink)[Li] ho #text(fill: accent)[comprati].]
-      #linebreak()
-      #text(size: 7pt, style: "italic", fill: ink-sec)[Hai comprato le mele? → #text(fill: ink)[Le] ho #text(fill: accent)[comprate].]
-    ]
-    #block[
-      #text(size: 7pt, weight: 500)[mi / ti / ci / vi → Kongruenz fakultativ]
-      #linebreak()
-      #text(size: 7pt, style: "italic", fill: ink-sec)[Mi ha chiamato. / Mi ha chiamata. (beide korrekt)]
-    ]
-  ],
-)
 
 // ── pronuncia ─────────────────────────────────────────────────────────────────
 #let lb = "\u{5B}"

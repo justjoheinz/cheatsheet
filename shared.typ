@@ -44,7 +44,7 @@
 #let conj-table(rows) = {
   set text(size: 7.5pt)
   table(
-    columns: (1.5cm, 1fr, 1fr, 1fr, 1fr),
+    columns: (1.5cm, 1fr),
     align: left,
     inset: (x: 4pt, y: 3.5pt),
     stroke: (_, y) => (
@@ -57,11 +57,8 @@
     table.header(
       text(size: 6.5pt, weight: 500, tracking: 0.08em, fill: ink-sec)[PRONOME],
       text(size: 6.5pt, weight: 500, tracking: 0.08em, fill: ink-sec)[PRESENTE],
-      text(size: 6.5pt, weight: 500, tracking: 0.08em, fill: ink-sec)[IMPERFETTO],
-      text(size: 6.5pt, weight: 500, tracking: 0.08em, fill: ink-sec)[PASS. PROS.],
-      text(size: 6.5pt, weight: 500, tracking: 0.08em, fill: ink-sec)[FUTURO],
     ),
-    ..rows.map(r => (r.at(0), r.at(1), r.at(2), r.at(3), r.at(4))).flatten().map(c => [#c]),
+    ..rows.map(r => (r.at(0), r.at(1))).flatten().map(c => [#c]),
   )
 }
 
@@ -87,7 +84,7 @@
 
 // ── comparison table renderer ────────────────────────────────────────────────
 
-#let verb-compare(group-label, verbs, presente-rows, imp-note, ppr-note, fut-note) = {
+#let verb-compare(group-label, verbs, presente-rows) = {
   let n = verbs.len()
   let verb-cols = range(n).map(i => 1fr)
   block(breakable: false)[
@@ -113,10 +110,6 @@
       ),
       ..presente-rows.flatten().map(c => [#c]),
     )
-    #v(3pt)
-    #text(size: 7pt, weight: 500, fill: ink-sec)[Imperfetto (io):] #h(1pt)#text(size: 7pt, style: "italic")[#imp-note]#linebreak()
-    #text(size: 7pt, weight: 500, fill: ink-sec)[Passato prossimo:] #h(1pt)#text(size: 7pt, style: "italic")[#ppr-note]#linebreak()
-    #text(size: 7pt, weight: 500, fill: ink-sec)[Futuro (io):] #h(1pt)#text(size: 7pt, style: "italic")[#fut-note]
   ]
   v(7pt)
 }
@@ -182,6 +175,38 @@
     ]
   ]
   v(6pt)
+}
+
+// ── condizionale comparison table ───────────────────────────────────────────
+
+#let cond-compare(group-label, verbs, cond-rows) = {
+  let n = verbs.len()
+  let verb-cols = range(n).map(i => 1fr)
+  block(breakable: false)[
+    #text(size: 6.5pt, weight: 500, tracking: 0.1em, fill: ink-sec)[#upper(group-label)]
+    #v(1.5pt)
+    #for v in verbs [#text(size: 10pt, weight: 600, fill: accent)[#v.at(0)]#h(3pt)#text(size: 8pt, fill: ink-sec)[(#v.at(1))]#h(6pt)]
+    #v(3pt)
+    #set text(size: 7pt)
+    #table(
+      columns: (1.5cm, ..verb-cols),
+      align: left,
+      inset: (x: 3pt, y: 3pt),
+      stroke: (_, y) => (
+        top:    none,
+        left:   none,
+        right:  none,
+        bottom: if y == 0 { 0.7pt + ink } else { 0.3pt + border },
+      ),
+      fill: (_, row) => if row == 0 { surface } else { white },
+      table.header(
+        text(size: 6pt, weight: 500, tracking: 0.08em, fill: ink-sec)[PRONOME],
+        ..verbs.map(v => text(size: 6pt, weight: 500, tracking: 0.08em, fill: ink-sec)[#upper(v.at(0))]),
+      ),
+      ..cond-rows.flatten().map(c => [#c]),
+    )
+  ]
+  v(7pt)
 }
 
 // ── tense rule block renderer ────────────────────────────────────────────────
