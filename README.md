@@ -66,6 +66,8 @@ Dieses Repository verwendet [swamp](https://github.com/systeminit/swamp) zur Aut
 
 #### Empfohlener Workflow mit Review-Zyklus
 
+Das Repository enthält ein `review-cheatsheet.sh` Script für den iterativen Review-Prozess.
+
 1. **Typst-Datei erstellen** (z.B. `nuovo.typ`):
    ```typst
    #import "shared.typ": *
@@ -78,12 +80,16 @@ Dieses Repository verwendet [swamp](https://github.com/systeminit/swamp) zur Aut
    ]
    ```
 
-2. **Review-Workflow starten**:
+2. **Review-Script ausführen**:
    ```bash
-   swamp workflow run cheatsheet-review --set name=nuovo --set action=create
+   ./review-cheatsheet.sh nuovo
    ```
 
-   Dies kompiliert das PDF, erstellt das Swamp-Model und aktualisiert die README-Tabelle.
+   Dies:
+   - Kompiliert `nuovo.typ` zu `nuovo.pdf` (via Typst)
+   - Erstellt das Swamp-Model
+   - Aktualisiert die README-Tabelle
+   - Zeigt Review-Instruktionen an
 
 3. **Review durchführen**:
    - PDF prüfen: `open nuovo.pdf`
@@ -93,17 +99,14 @@ Dieses Repository verwendet [swamp](https://github.com/systeminit/swamp) zur Aut
 
    **✅ Genehmigen und committen**:
    ```bash
-   swamp workflow run cheatsheet-review \
-     --set name=nuovo \
-     --set action=approve \
-     --set commitMessage="Add nuovo cheatsheet"
+   ./review-cheatsheet.sh nuovo "Add nuovo cheatsheet"
    ```
 
    **🔄 Änderungen anfordern**:
    - `nuovo.typ` manuell bearbeiten
-   - Workflow erneut ausführen:
+   - Script erneut ausführen:
      ```bash
-     swamp workflow run cheatsheet-review --set name=nuovo --set action=create
+     ./review-cheatsheet.sh nuovo
      ```
 
    **❌ Verwerfen**:
@@ -142,6 +145,7 @@ Für schnelle Updates ohne Git-Commit:
   - Wraps Typst compilation
   - Generiert README-Tabelle aus Model-Metadaten
 - **Models**: Ein Model pro Cheatsheet in `models/@justjoheinz/cheatsheet/`
+- **Scripts**:
+  - `review-cheatsheet.sh`: Iterativer Review-Zyklus mit Git-Commit
 - **Workflows**:
-  - `cheatsheet-review`: Iterativer Review-Zyklus mit Git-Commit
   - `compile-on-schedule`: Batch-Kompilierung aller Cheatsheets
