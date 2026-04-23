@@ -13,7 +13,10 @@ Druckbare A4-PDFs für deutschsprachige Lernende der italienischen Sprache.
 | [letteratura.pdf](letteratura.pdf) | Il Libro — Bücher · Zeitungen · Literatur |
 | [arte.pdf](arte.pdf) | Arte — Museo · Opere · Stili |
 | [cucina.pdf](cucina.pdf) | In Cucina — Küche · Kochen · Zubereitung |
+| [numeri.pdf](numeri.pdf) | I Numeri — Kardinalzahlen · Ordinalzahlen |
 | [orientierung.pdf](orientierung.pdf) | Orientarsi — Strade · Indicazioni · Luoghi |
+| [preposizioni.pdf](preposizioni.pdf) | Preposizioni Articolate — Präposition + bestimmter artikel |
+| [pronuncia.pdf](pronuncia.pdf) | Pronuncia — Ausspracheregeln — konsonanten · Vokale · Betonung |
 
 ## Inhalt — cheatsheet.pdf
 
