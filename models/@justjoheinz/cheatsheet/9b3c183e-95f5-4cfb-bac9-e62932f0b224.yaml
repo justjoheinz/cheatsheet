@@ -5,5 +5,6 @@ name: futuro
 version: 1
 tags: {}
 globalArguments:
+  topic: Grammatik
   repoDir: .
 methods: {}

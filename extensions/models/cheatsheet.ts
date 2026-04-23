@@ -12,6 +12,15 @@ const GlobalArgsSchema = z.object({
   repoDir: z
     .string()
     .describe("Absolute path to the cheatsheet repository root"),
+  topic: z
+    .enum([
+      "Grammatik",
+      "Vokabular",
+      "Thematisch",
+      "Grammatik & Verben",
+    ])
+    .default("Thematisch")
+    .describe("Content domain classification for the cheatsheet"),
 });
 
 const CheatsheetSchema = z.object({
@@ -24,7 +33,6 @@ const CheatsheetSchema = z.object({
     .enum([
       "Grammatik",
       "Vokabular",
-      "Literatur",
       "Thematisch",
       "Grammatik & Verben",
     ])
@@ -61,40 +69,6 @@ function countPages(source: string): number {
   return matches ? matches.length : 1;
 }
 
-function classifyTopic(
-  name: string,
-  title: string
-): z.infer<typeof CheatsheetSchema>["topic"] {
-  if (name === "cheatsheet") return "Grammatik & Verben";
-  const lower = title.toLowerCase();
-  if (lower.includes("verbali") || lower.includes("verbi")) return "Grammatik & Verben";
-  if (
-    lower.includes("condizionale") ||
-    lower.includes("futuro") ||
-    lower.includes("congiuntivo") ||
-    lower.includes("tempi") ||
-    lower.includes("passato") ||
-    lower.includes("imperfetto") ||
-    lower.includes("presente") ||
-    lower.includes("gerundio") ||
-    lower.includes("imperativo")
-  )
-    return "Grammatik";
-  if (
-    lower.includes("libro") ||
-    lower.includes("letteratura") ||
-    lower.includes("racconto") ||
-    lower.includes("contenuto") ||
-    lower.includes("lesepraxis") ||
-    lower.includes("media")
-  )
-    return "Literatur";
-  if (lower.includes("parole") || lower.includes("vocabolario"))
-    return "Vokabular";
-  // Thematic: orientarsi, arte, musica, pittura, architettura, etc.
-  return "Thematisch";
-}
-
 // ── Model ─────────────────────────────────────────────────────────────────────
 
 export const model = {
@@ -127,7 +101,7 @@ export const model = {
       execute: async (
         args: { name: string },
         context: {
-          globalArgs: { repoDir: string };
+          globalArgs: { repoDir: string; topic: string };
           writeResource: (
             spec: string,
             instance: string,
@@ -137,7 +111,7 @@ export const model = {
         }
       ) => {
         const { name } = args;
-        const repoDir = context.globalArgs.repoDir;
+        const { repoDir, topic } = context.globalArgs;
         const typFile = path.join(repoDir, `${name}.typ`);
         const pdfFile = path.join(repoDir, `${name}.pdf`);
 
@@ -162,7 +136,6 @@ export const model = {
         }
 
         const pageCount = countPages(source);
-        const topic = classifyTopic(name, pageTitleData.title);
 
         context.logger.info(`Compiling ${name}.typ (${pageCount} page(s))…`);
 

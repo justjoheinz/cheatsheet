@@ -1,6 +1,10 @@
 import { z } from "npm:zod@4";
 import * as path from "node:path";
 import * as fs from "node:fs/promises";
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
+
+const execFileAsync = promisify(execFile);
 
 // ── Shared helpers (duplicated from cheatsheet.ts to keep files self-contained) ─
 
@@ -12,41 +16,13 @@ function extractPageTitle(
   return { title: match[1].trim(), subtitle: match[2].trim() };
 }
 
-type Topic = "Grammatik & Verben" | "Grammatik" | "Vokabular" | "Literatur" | "Thematisch";
-
-function classifyTopic(name: string, title: string): Topic {
-  if (name === "cheatsheet") return "Grammatik & Verben";
-  const lower = title.toLowerCase();
-  if (lower.includes("verbali") || lower.includes("verbi")) return "Grammatik & Verben";
-  if (
-    lower.includes("condizionale") ||
-    lower.includes("futuro") ||
-    lower.includes("congiuntivo") ||
-    lower.includes("tempi") ||
-    lower.includes("passato") ||
-    lower.includes("imperfetto") ||
-    lower.includes("presente") ||
-    lower.includes("gerundio") ||
-    lower.includes("imperativo")
-  ) return "Grammatik";
-  if (
-    lower.includes("libro") ||
-    lower.includes("letteratura") ||
-    lower.includes("racconto") ||
-    lower.includes("contenuto") ||
-    lower.includes("lesepraxis") ||
-    lower.includes("media")
-  ) return "Literatur";
-  if (lower.includes("parole") || lower.includes("vocabolario")) return "Vokabular";
-  return "Thematisch";
-}
+type Topic = "Grammatik & Verben" | "Grammatik" | "Vokabular" | "Thematisch";
 
 const TOPIC_ORDER: Record<Topic, number> = {
   "Grammatik & Verben": 0,
   "Grammatik": 1,
   "Vokabular": 2,
-  "Literatur": 3,
-  "Thematisch": 4,
+  "Thematisch": 3,
 };
 
 function toTitleCase(subtitle: string): string {
@@ -108,11 +84,26 @@ export const extension = {
             continue;
           }
 
+          // Get topic from swamp model
+          let topic: Topic = "Thematisch";
+          try {
+            const { stdout } = await execFileAsync("swamp", [
+              "model",
+              "get",
+              stem,
+              "--json",
+            ]);
+            const modelData = JSON.parse(stdout);
+            topic = modelData.globalArguments?.topic || "Thematisch";
+          } catch {
+            context.logger.info(`Could not read topic for ${stem}, using default: Thematisch`);
+          }
+
           entries.push({
             name: stem,
             title: pageTitle.title,
             subtitle: pageTitle.subtitle,
-            topic: classifyTopic(stem, pageTitle.title),
+            topic,
           });
         }
 

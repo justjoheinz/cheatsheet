@@ -11,14 +11,14 @@ Druckbare A4-PDFs für deutschsprachige Lernende der italienischen Sprache.
 | [imperativo.pdf](imperativo.pdf) | Grammatik | Imperativo — Tu & Voi |
 | [imperfetto.pdf](imperfetto.pdf) | Grammatik | Imperfetto — Formazione · Desinenze · Irregolari · Uso |
 | [passato.pdf](passato.pdf) | Grammatik | Passato Prossimo — Formazione · Participio · Uso |
+| [preposizioni.pdf](preposizioni.pdf) | Grammatik | Preposizioni Articolate — Preposizione · Articolo Determinativo |
 | [parole.pdf](parole.pdf) | Vokabular | Parole Utili — Avverbi · Congiunzioni · Indefiniti · Luogo |
-| [letteratura.pdf](letteratura.pdf) | Literatur | Il Libro — Libri · Giornali · Letteratura |
 | [arte.pdf](arte.pdf) | Thematisch | Arte — Museo · Opere · Stili |
 | [casa.pdf](casa.pdf) | Thematisch | La Casa — Edifici · Case · Mobili · Arredamento |
 | [cucina.pdf](cucina.pdf) | Thematisch | In Cucina — Cucina · Cucinare · Preparazione |
+| [letteratura.pdf](letteratura.pdf) | Thematisch | Il Libro — Libri · Giornali · Letteratura |
 | [numeri.pdf](numeri.pdf) | Thematisch | I Numeri — Numeri Cardinali · Numeri Ordinali |
 | [orientierung.pdf](orientierung.pdf) | Thematisch | Orientarsi — Strade · Indicazioni · Luoghi |
-| [preposizioni.pdf](preposizioni.pdf) | Thematisch | Preposizioni Articolate — Preposizione · Articolo Determinativo |
 | [pronuncia.pdf](pronuncia.pdf) | Thematisch | Pronuncia — Regole Di Pronuncia — Consonanti · Vocali · Accento |
 
 ## Inhalt — cheatsheet.pdf
