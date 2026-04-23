@@ -1,0 +1,9 @@
+type: '@justjoheinz/cheatsheet'
+typeVersion: 2026.04.22.1
+id: 7fdaa611-5e1d-423d-b724-88bf2bf2c807
+name: passato
+version: 1
+tags: {}
+globalArguments:
+  repoDir: .
+methods: {}

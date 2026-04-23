@@ -1,0 +1,9 @@
+type: '@justjoheinz/cheatsheet'
+typeVersion: 2026.04.22.1
+id: a29bbe09-50f0-4655-980c-4971fc8a4923
+name: cucina
+version: 1
+tags: {}
+globalArguments:
+  repoDir: .
+methods: {}

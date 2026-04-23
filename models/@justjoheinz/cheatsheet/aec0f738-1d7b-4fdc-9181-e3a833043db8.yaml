@@ -1,0 +1,9 @@
+type: '@justjoheinz/cheatsheet'
+typeVersion: 2026.04.22.1
+id: aec0f738-1d7b-4fdc-9181-e3a833043db8
+name: arte
+version: 1
+tags: {}
+globalArguments:
+  repoDir: .
+methods: {}

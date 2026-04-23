@@ -1,0 +1,9 @@
+type: '@justjoheinz/cheatsheet'
+typeVersion: 2026.04.22.1
+id: b6312c9f-c4a2-4acf-98ff-bc7bdcae580e
+name: imperfetto
+version: 1
+tags: {}
+globalArguments:
+  repoDir: .
+methods: {}

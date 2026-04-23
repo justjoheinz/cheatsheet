@@ -1,0 +1,12 @@
+type: command/shell
+typeVersion: 2026.02.09.1
+id: 6753ac9b-4138-45d2-9c4b-c0e37b61b48a
+name: compile-cheatsheets
+version: 1
+tags: {}
+globalArguments: {}
+methods:
+  execute:
+    arguments:
+      run: make
+      workingDir: /Users/m.klink/Projects/personal/ai/cheatsheet-swamp

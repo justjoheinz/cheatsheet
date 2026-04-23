@@ -1,0 +1,9 @@
+type: '@justjoheinz/cheatsheet'
+typeVersion: 2026.04.22.1
+id: 2930f20d-1db6-4458-8a60-3af585b0659f
+name: cheatsheet
+version: 1
+tags: {}
+globalArguments:
+  repoDir: .
+methods: {}

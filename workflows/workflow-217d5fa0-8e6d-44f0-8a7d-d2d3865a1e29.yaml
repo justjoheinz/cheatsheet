@@ -1,0 +1,34 @@
+id: 217d5fa0-8e6d-44f0-8a7d-d2d3865a1e29
+name: compile-on-schedule
+description: Compile Italian cheatsheets to PDF on a schedule
+trigger:
+  schedule: "*/15 * * * *"
+tags: {}
+jobs:
+  - name: main
+    description: Compile all cheatsheets and update README
+    steps:
+      - name: compile
+        description: Run make to compile changed .typ files to PDF
+        task:
+          type: model_method
+          modelIdOrName: compile-cheatsheets
+          methodName: execute
+          inputs:
+            run: make
+            workingDir: /Users/m.klink/Projects/personal/ai/cheatsheet-swamp
+        dependsOn: []
+        allowFailure: false
+      - name: update-readme
+        description: Regenerate the README.md PDF table from all compiled cheatsheets
+        task:
+          type: model_method
+          modelIdOrName: cheatsheet
+          methodName: update-readme
+        dependsOn:
+          - step: compile
+            condition:
+              type: succeeded
+        allowFailure: false
+    dependsOn: []
+version: 1

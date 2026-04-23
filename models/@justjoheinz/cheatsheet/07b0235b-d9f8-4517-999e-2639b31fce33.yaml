@@ -1,0 +1,9 @@
+type: '@justjoheinz/cheatsheet'
+typeVersion: 2026.04.22.1
+id: 07b0235b-d9f8-4517-999e-2639b31fce33
+name: imperativo
+version: 1
+tags: {}
+globalArguments:
+  repoDir: .
+methods: {}

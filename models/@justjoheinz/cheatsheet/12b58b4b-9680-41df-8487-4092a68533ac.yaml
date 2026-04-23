@@ -1,0 +1,9 @@
+type: '@justjoheinz/cheatsheet'
+typeVersion: 2026.04.22.1
+id: 12b58b4b-9680-41df-8487-4092a68533ac
+name: orientierung
+version: 1
+tags: {}
+globalArguments:
+  repoDir: .
+methods: {}
