@@ -11,6 +11,7 @@
   ("il palazzo",        "das Gebäude / der Palast"),
   ("la villa",          "die Villa"),
   ("il grattacielo",    "der Wolkenkratzer"),
+  ("il palazzone",      "das Hochhaus"),
   ("la baita",          "die Berghütte"),
   ("il castello",       "das Schloss"),
   ("la fattoria",       "der Bauernhof"),
