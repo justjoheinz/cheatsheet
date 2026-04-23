@@ -1,0 +1,9 @@
+type: '@justjoheinz/cheatsheet'
+typeVersion: 2026.04.22.1
+id: 2616f5b9-5b2f-445d-bd85-5917391c54dc
+name: casa
+version: 1
+tags: {}
+globalArguments:
+  repoDir: .
+methods: {}

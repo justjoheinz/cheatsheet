@@ -14,6 +14,7 @@ Druckbare A4-PDFs für deutschsprachige Lernende der italienischen Sprache.
 | [parole.pdf](parole.pdf) | Vokabular | Parole Utili — Avverbi · Congiunzioni · Indefiniti · Luogo |
 | [letteratura.pdf](letteratura.pdf) | Literatur | Il Libro — Bücher · Zeitungen · Literatur |
 | [arte.pdf](arte.pdf) | Thematisch | Arte — Museo · Opere · Stili |
+| [casa.pdf](casa.pdf) | Thematisch | La Casa — Gebäude · Häuser · Möbel · Inneneinrichtung |
 | [cucina.pdf](cucina.pdf) | Thematisch | In Cucina — Küche · Kochen · Zubereitung |
 | [numeri.pdf](numeri.pdf) | Thematisch | I Numeri — Kardinalzahlen · Ordinalzahlen |
 | [orientierung.pdf](orientierung.pdf) | Thematisch | Orientarsi — Strade · Indicazioni · Luoghi |
@@ -63,17 +64,59 @@ Dieses Repository verwendet [swamp](https://github.com/systeminit/swamp) zur Aut
 
 ### Neues Cheatsheet hinzufügen
 
+#### Empfohlener Workflow mit Review-Zyklus
+
 1. **Typst-Datei erstellen** (z.B. `nuovo.typ`):
    ```typst
    #import "shared.typ": *
    #show: cheatsheet
 
-   #page-title[Titolo][SOTTOTITOLO]
+   #page-title[Titolo][SOTTOTITOLO · MIT · MIDDOT]
 
    #columns(2, gutter: 0.9cm)[
      // Inhalt hier
    ]
    ```
+
+2. **Review-Workflow starten**:
+   ```bash
+   swamp workflow run cheatsheet-review --set name=nuovo --set action=create
+   ```
+
+   Dies kompiliert das PDF, erstellt das Swamp-Model und aktualisiert die README-Tabelle.
+
+3. **Review durchführen**:
+   - PDF prüfen: `open nuovo.pdf`
+   - README-Änderungen prüfen: `git diff README.md`
+
+4. **Entscheidung treffen**:
+
+   **✅ Genehmigen und committen**:
+   ```bash
+   swamp workflow run cheatsheet-review \
+     --set name=nuovo \
+     --set action=approve \
+     --set commitMessage="Add nuovo cheatsheet"
+   ```
+
+   **🔄 Änderungen anfordern**:
+   - `nuovo.typ` manuell bearbeiten
+   - Workflow erneut ausführen:
+     ```bash
+     swamp workflow run cheatsheet-review --set name=nuovo --set action=create
+     ```
+
+   **❌ Verwerfen**:
+   ```bash
+   git restore nuovo.typ nuovo.pdf README.md
+   swamp model delete nuovo
+   ```
+
+#### Manueller Workflow (ohne Review)
+
+Für schnelle Updates ohne Git-Commit:
+
+1. **Typst-Datei erstellen/bearbeiten**
 
 2. **Cheatsheet-Model erstellen**:
    ```bash
@@ -87,16 +130,10 @@ Dieses Repository verwendet [swamp](https://github.com/systeminit/swamp) zur Aut
    swamp model method run cheatsheet update-readme
    ```
 
-   Dies scannt automatisch alle Cheatsheet-Models und generiert die Tabelle in dieser README.
-
 4. **PDF kompilieren**:
    ```bash
-   swamp workflow run compile-on-schedule
-   ```
-
-   Oder direkt via Make:
-   ```bash
    make
+   # oder: swamp workflow run compile-on-schedule
    ```
 
 ### Architektur
@@ -105,4 +142,6 @@ Dieses Repository verwendet [swamp](https://github.com/systeminit/swamp) zur Aut
   - Wraps Typst compilation
   - Generiert README-Tabelle aus Model-Metadaten
 - **Models**: Ein Model pro Cheatsheet in `models/@justjoheinz/cheatsheet/`
-- **Workflow**: `compile-on-schedule` orchestriert Kompilierung + README-Update
+- **Workflows**:
+  - `cheatsheet-review`: Iterativer Review-Zyklus mit Git-Commit
+  - `compile-on-schedule`: Batch-Kompilierung aller Cheatsheets
