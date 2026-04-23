@@ -4,9 +4,11 @@ Druckbare A4-PDFs für deutschsprachige Lernende der italienischen Sprache.
 
 | PDF | Inhalt |
 |---|---|
-| [cheatsheet.pdf](cheatsheet.pdf) | Verbi Italiani — Coniugazione — Presente |
+| [cheatsheet.pdf](cheatsheet.pdf) | Vocabolario Comune — Verbi frequenti |
+| [presente.pdf](presente.pdf) | Verbi Italiani — Coniugazione — Presente |
 | [condizionale.pdf](condizionale.pdf) | Condizionale Semplice — Bildung · Endungen · Ausnahmen |
 | [futuro.pdf](futuro.pdf) | Futuro Semplice — Bildung · Stammverben · Verwendung |
+| [imperativo.pdf](imperativo.pdf) | Imperativo — Befehlsform — tu & voi |
 | [imperfetto.pdf](imperfetto.pdf) | Imperfetto — Bildung · Endungen · Unregelmässige · Verwendung |
 | [passato.pdf](passato.pdf) | Passato Prossimo — Bildung · Partizip · Verwendung |
 | [parole.pdf](parole.pdf) | Parole Utili — Avverbi · Congiunzioni · Indefiniti · Luogo |
