@@ -16,7 +16,7 @@ jobs:
           methodName: execute
           inputs:
             run: make
-            workingDir: /Users/m.klink/Projects/personal/ai/cheatsheet-swamp
+            workingDir: "."
         dependsOn: []
         allowFailure: false
       - name: update-readme
