@@ -20,7 +20,6 @@
   ("misurare",        "abmessen"),
   ("condire",         "würzen / anmachen",             "condire l'insalata = den Salat anmachen"),
   ("salare",          "salzen"),
-  ("pepare",          "pfeffern"),
   ("assaggiare",      "kosten / probieren"),
 ))
 
@@ -60,6 +59,8 @@
   ("il mattarello",      "das Nudelholz"),
   ("il robot da cucina", "die Küchenmaschine"),
   ("il frullatore",      "der Mixer / Standmixer"),
+  ("la ricetta",         "das Rezept"),
+  ("il ricettario",      "das Kochbuch"),
 ))
 
 #vocab-group("Misure & Quantità", (
