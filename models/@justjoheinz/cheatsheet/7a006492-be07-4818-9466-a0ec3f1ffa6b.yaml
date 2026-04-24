@@ -1,0 +1,10 @@
+type: '@justjoheinz/cheatsheet'
+typeVersion: 2026.04.22.1
+id: 7a006492-be07-4818-9466-a0ec3f1ffa6b
+name: vino
+version: 1
+tags: {}
+globalArguments:
+  repoDir: .
+  topic: Thematisch
+methods: {}
