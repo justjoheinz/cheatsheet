@@ -19,6 +19,7 @@ Druckbare A4-PDFs für deutschsprachige Lernende der italienischen Sprache.
 | [letteratura.pdf](letteratura.pdf) | Thematisch | Il Libro — Libri · Giornali · Letteratura |
 | [numeri.pdf](numeri.pdf) | Thematisch | I Numeri — Numeri Cardinali · Numeri Ordinali |
 | [orientierung.pdf](orientierung.pdf) | Thematisch | Orientarsi — Strade · Indicazioni · Luoghi |
+| [politica.pdf](politica.pdf) | Thematisch | Politica — Stato · Governo · Partiti |
 | [pronuncia.pdf](pronuncia.pdf) | Thematisch | Pronuncia — Regole Di Pronuncia — Consonanti · Vocali · Accento |
 
 ## Inhalt — cheatsheet.pdf
