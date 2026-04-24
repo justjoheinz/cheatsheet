@@ -16,6 +16,7 @@
   ("mescolare",       "umrühren / mischen"),
   ("impastare",       "kneten / einen Teig herstellen"),
   ("versare",         "gießen / schütten"),
+  ("sfumare",         "ablöschen"),
   ("pesare",          "abwiegen"),
   ("misurare",        "abmessen"),
   ("condire",         "würzen / anmachen",             "condire l'insalata = den Salat anmachen"),
