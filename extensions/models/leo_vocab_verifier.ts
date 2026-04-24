@@ -199,11 +199,59 @@ function translationMatches(cheatsheetDE: string, leoDE: string[]): boolean {
   );
 }
 
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
+type EntryResult = z.infer<typeof EntryResultSchema>;
+
+/** Cache key for deduplicating across runs: italian + german pair. */
+function cacheKey(italian: string, german: string): string {
+  return `${italian}|||${german}`;
+}
+
+/** Query Leo for a single entry and return the result. */
+async function checkEntry(
+  entry: VocabEntry
+): Promise<{ status: EntryResult["status"]; leoTranslations: string[]; detail?: string }> {
+  const queryWord = normalizeQueryWord(entry.italian);
+  let leoTranslations: string[] = [];
+  let status: EntryResult["status"];
+  let detail: string | undefined;
+
+  try {
+    leoTranslations = await queryLeo(queryWord);
+    if (leoTranslations.length === 0) {
+      status = "not_found";
+      detail = `No translations found on Leo for "${queryWord}"`;
+    } else if (translationMatches(entry.german, leoTranslations)) {
+      status = "ok";
+    } else {
+      status = "mismatch";
+      detail =
+        `Cheatsheet: "${entry.german}" — ` +
+        `Leo top results: ${leoTranslations.slice(0, 5).join(", ")}`;
+    }
+  } catch (err) {
+    status = "error";
+    detail = err instanceof Error ? err.message : String(err);
+  }
+
+  return { status, leoTranslations: leoTranslations.slice(0, 10), detail };
+}
+
 // ── Model ─────────────────────────────────────────────────────────────────────
 
 export const model = {
   type: "@justjoheinz/leo-vocab-verifier",
-  version: "2026.04.24.1",
+  version: "2026.04.24.2",
+
+  upgrades: [
+    {
+      fromVersion: "2026.04.24.1",
+      toVersion: "2026.04.24.2",
+      description: "verify now skips cached ok/mismatch entries; recheck covers not_found too",
+      upgradeAttributes: (old: unknown) => old,
+    },
+  ],
 
   resources: {
     result: {
@@ -218,7 +266,9 @@ export const model = {
     verify: {
       description:
         "Parse #vocab-group entries from .typ cheatsheet files and verify each " +
-        "Italian → German pair against dict.leo.org/italienisch-deutsch.",
+        "Italian → German pair against dict.leo.org/italienisch-deutsch. " +
+        "Entries with a cached 'ok' or 'mismatch' result are skipped; " +
+        "new entries and those with 'error' or 'not_found' status are re-queried.",
       arguments: z.object({
         files: z
           .array(z.string())
@@ -261,62 +311,87 @@ export const model = {
           );
         }
 
-        // 2. Verify each entry against Leo
-        const results: z.infer<typeof EntryResultSchema>[] = [];
+        // 2. Load cached results from previous run (if any)
+        const cachedMap = new Map<string, EntryResult>();
+        try {
+          const prev = await context.readResource!("main") as z.infer<typeof VerifyResultSchema>;
+          if (prev?.entries) {
+            for (const e of prev.entries) {
+              cachedMap.set(cacheKey(e.italian, e.german), e);
+            }
+            context.logger.info(
+              `Loaded ${cachedMap.size} cached results from previous run`
+            );
+          }
+        } catch {
+          // No previous result — first run, proceed without cache
+        }
+
+        // 3. Partition entries: skip ok/mismatch, query the rest
+        const toQuery: VocabEntry[] = [];
+        for (const entry of allEntries) {
+          const hit = cachedMap.get(cacheKey(entry.italian, entry.german));
+          if (hit && (hit.status === "ok" || hit.status === "mismatch")) {
+            // carry over — no Leo request needed
+          } else {
+            toQuery.push(entry);
+          }
+        }
+
+        const skipped = allEntries.length - toQuery.length;
+        if (skipped > 0) {
+          context.logger.info(
+            `Skipping ${skipped} already-verified entries (ok/mismatch)`
+          );
+        }
+
+        // 4. Query Leo for entries that need checking
+        const freshResults = new Map<string, EntryResult>();
         let ok = 0, mismatches = 0, notFound = 0, errors = 0;
 
-        for (let idx = 0; idx < allEntries.length; idx++) {
-          const entry = allEntries[idx];
+        for (let qi = 0; qi < toQuery.length; qi++) {
+          const entry = toQuery[qi];
           const queryWord = normalizeQueryWord(entry.italian);
 
           context.logger.info(
-            `[${idx + 1}/${allEntries.length}] ${queryWord} (${entry.group})`
+            `[${qi + 1}/${toQuery.length}] ${queryWord} (${entry.group})`
           );
 
-          let leoTranslations: string[] = [];
-          let status: "ok" | "mismatch" | "not_found" | "error";
-          let detail: string | undefined;
+          const { status, leoTranslations, detail } = await checkEntry(entry);
 
-          try {
-            leoTranslations = await queryLeo(queryWord);
+          if (status === "ok") ok++;
+          else if (status === "mismatch") mismatches++;
+          else if (status === "not_found") notFound++;
+          else errors++;
 
-            if (leoTranslations.length === 0) {
-              status = "not_found";
-              detail = `No translations found on Leo for "${queryWord}"`;
-              notFound++;
-            } else if (translationMatches(entry.german, leoTranslations)) {
-              status = "ok";
-              ok++;
-            } else {
-              status = "mismatch";
-              detail =
-                `Cheatsheet: "${entry.german}" — ` +
-                `Leo top results: ${leoTranslations.slice(0, 5).join(", ")}`;
-              mismatches++;
-            }
-          } catch (err) {
-            status = "error";
-            detail = err instanceof Error ? err.message : String(err);
-            errors++;
-          }
-
-          results.push({
+          freshResults.set(cacheKey(entry.italian, entry.german), {
             group: entry.group,
             italian: entry.italian,
             german: entry.german,
             status,
-            leoTranslations: leoTranslations.slice(0, 10),
+            leoTranslations,
             ...(detail !== undefined ? { detail } : {}),
           });
 
-          // Rate-limit between requests (skip delay after last entry)
-          if (idx < allEntries.length - 1 && delayMs > 0) {
+          if (qi < toQuery.length - 1 && delayMs > 0) {
             await new Promise((r) => setTimeout(r, delayMs));
           }
         }
 
+        // 5. Rebuild full result list in original order, merging cache + fresh
+        const finalEntries: EntryResult[] = allEntries.map((entry) => {
+          const key = cacheKey(entry.italian, entry.german);
+          const fresh = freshResults.get(key);
+          if (fresh) return fresh;
+          const cached = cachedMap.get(key)!;
+          if (cached.status === "ok") ok++;
+          else if (cached.status === "mismatch") mismatches++;
+          return cached;
+        });
+
         context.logger.info(
-          `Done — ok: ${ok}, mismatches: ${mismatches}, not_found: ${notFound}, errors: ${errors}`
+          `Done — ok: ${ok}, mismatches: ${mismatches}, not_found: ${notFound}, errors: ${errors}` +
+          (skipped > 0 ? ` (${skipped} skipped from cache)` : "")
         );
 
         const handle = await context.writeResource("result", "main", {
@@ -327,7 +402,7 @@ export const model = {
           mismatches,
           notFound,
           errors,
-          entries: results,
+          entries: finalEntries,
         });
 
         return { dataHandles: [handle] };
@@ -336,7 +411,7 @@ export const model = {
 
     recheck: {
       description:
-        "Re-query Leo only for entries that had status 'error' in the last stored result. " +
+        "Re-query Leo only for entries that had status 'error' or 'not_found' in the last stored result. " +
         "Merges the new results back into the stored data and overwrites the 'main' resource.",
       arguments: z.object({
         delayMs: z
@@ -355,19 +430,21 @@ export const model = {
           throw new Error("No stored result found. Run 'verify' first.");
         }
 
-        const toRecheck = prev.entries.filter((e) => e.status === "error");
+        const toRecheck = prev.entries.filter(
+          (e) => e.status === "error" || e.status === "not_found"
+        );
         if (toRecheck.length === 0) {
-          context.logger.info("No error entries to recheck.");
+          context.logger.info("No error/not_found entries to recheck.");
           const handle = await context.writeResource("result", "main", prev);
           return { dataHandles: [handle] };
         }
 
-        context.logger.info(`Rechecking ${toRecheck.length} error entries…`);
+        context.logger.info(`Rechecking ${toRecheck.length} error/not_found entries…`);
 
         // Build a mutable copy of entries, keyed by italian word for fast lookup
         const updatedEntries = prev.entries.map((e) => ({ ...e }));
-        const indexByItalian = new Map(
-          updatedEntries.map((e, i) => [e.italian, i])
+        const indexByKey = new Map(
+          updatedEntries.map((e, i) => [cacheKey(e.italian, e.german), i])
         );
 
         let okDelta = 0, mismatchDelta = 0, notFoundDelta = 0, errorDelta = 0;
@@ -380,39 +457,24 @@ export const model = {
             `[${idx + 1}/${toRecheck.length}] ${queryWord} (${entry.group})`
           );
 
-          let leoTranslations: string[] = [];
-          let status: "ok" | "mismatch" | "not_found" | "error";
-          let detail: string | undefined;
+          const { status, leoTranslations, detail } = await checkEntry({
+            file: "",
+            group: entry.group,
+            italian: entry.italian,
+            german: entry.german,
+          });
 
-          try {
-            leoTranslations = await queryLeo(queryWord);
+          if (status === "ok") okDelta++;
+          else if (status === "mismatch") mismatchDelta++;
+          else if (status === "not_found") notFoundDelta++;
+          else errorDelta++;
 
-            if (leoTranslations.length === 0) {
-              status = "not_found";
-              detail = `No translations found on Leo for "${queryWord}"`;
-              notFoundDelta++;
-            } else if (translationMatches(entry.german, leoTranslations)) {
-              status = "ok";
-              okDelta++;
-            } else {
-              status = "mismatch";
-              detail =
-                `Cheatsheet: "${entry.german}" — ` +
-                `Leo top results: ${leoTranslations.slice(0, 5).join(", ")}`;
-              mismatchDelta++;
-            }
-          } catch (err) {
-            status = "error";
-            detail = err instanceof Error ? err.message : String(err);
-            errorDelta++;
-          }
-
-          const i = indexByItalian.get(entry.italian);
+          const i = indexByKey.get(cacheKey(entry.italian, entry.german));
           if (i !== undefined) {
             updatedEntries[i] = {
               ...updatedEntries[i],
               status,
-              leoTranslations: leoTranslations.slice(0, 10),
+              leoTranslations,
               ...(detail !== undefined ? { detail } : { detail: undefined }),
             };
           }
@@ -422,10 +484,12 @@ export const model = {
           }
         }
 
-        const resolvedErrors = toRecheck.length - errorDelta;
+        const prevErrors = prev.entries.filter((e) => e.status === "error").length;
+        const prevNotFound = prev.entries.filter((e) => e.status === "not_found").length;
+
         context.logger.info(
-          `Recheck done — resolved: ${resolvedErrors}, now ok: ${okDelta}, ` +
-          `mismatches: ${mismatchDelta}, not_found: ${notFoundDelta}, still error: ${errorDelta}`
+          `Recheck done — ok: +${okDelta}, mismatches: +${mismatchDelta}, ` +
+          `not_found: +${notFoundDelta}, still error: ${errorDelta}`
         );
 
         const merged: z.infer<typeof VerifyResultSchema> = {
@@ -433,8 +497,8 @@ export const model = {
           checkedAt: new Date().toISOString(),
           ok: prev.ok + okDelta,
           mismatches: prev.mismatches + mismatchDelta,
-          notFound: prev.notFound + notFoundDelta,
-          errors: prev.errors - toRecheck.length + errorDelta,
+          notFound: prev.notFound - prevNotFound + notFoundDelta,
+          errors: prev.errors - prevErrors + errorDelta,
           entries: updatedEntries,
         };
 
