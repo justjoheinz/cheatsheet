@@ -105,4 +105,13 @@
   ("quale / quali","welche/r/s",       "Quale preferisci? · Quali sono i tuoi hobby?"),
 ))
 
+#vocab-group("Bewertung", (
+  ("giusto",     "richtig / korrekt"),
+  ("sbagliato",  "falsch / verkehrt"),
+  ("corretto",   "korrekt / einwandfrei"),
+  ("falso",      "falsch / unwahr"),
+  ("vero",       "wahr / echt"),
+  ("esatto",     "genau / stimmt"),
+))
+
 ] // end columns

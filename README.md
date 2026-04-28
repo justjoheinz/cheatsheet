@@ -21,6 +21,7 @@ Druckbare A4-PDFs für deutschsprachige Lernende der italienischen Sprache.
 | [orientierung.pdf](orientierung.pdf) | Thematisch | Orientarsi — Strade · Indicazioni · Luoghi |
 | [politica.pdf](politica.pdf) | Thematisch | Politica — Stato · Governo · Partiti |
 | [pronuncia.pdf](pronuncia.pdf) | Thematisch | Pronuncia — Regole Di Pronuncia — Consonanti · Vocali · Accento |
+| [verbi.pdf](verbi.pdf) | Thematisch | Verbi Frequenti — Vocabolario Comune |
 | [vino.pdf](vino.pdf) | Thematisch | Il Vino — Viticoltura · Vitigni · Tipologie |
 
 ## Inhalt — cheatsheet.pdf

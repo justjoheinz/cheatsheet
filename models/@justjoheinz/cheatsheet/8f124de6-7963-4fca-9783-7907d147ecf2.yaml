@@ -1,0 +1,10 @@
+type: '@justjoheinz/cheatsheet'
+typeVersion: 2026.04.22.1
+id: 8f124de6-7963-4fca-9783-7907d147ecf2
+name: verbi
+version: 1
+tags: {}
+globalArguments:
+  repoDir: .
+  topic: Thematisch
+methods: {}

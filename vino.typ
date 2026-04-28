@@ -128,3 +128,42 @@
 #ann[*Qualitätsbezeichnungen:* DOC (Denominazione di Origine Controllata) = kontrollierte Herkunft · DOCG (Controllata e Garantita) = höchste Stufe, staatlich geprüft · IGT (Indicazione Geografica Tipica) = flexible Herkunftsangabe, Basis für viele Super Tuscans.]
 
 ] // end columns
+
+// ── page 3: vino naturale & lavorazione ──────────────────────────────────────
+#pagebreak()
+
+#page-title[Vino Naturale & Lavorazione][NATURWEIN · WEINVERARBEITUNG · KELLER]
+
+#columns(2, gutter: 0.9cm)[
+
+#vocab-group("Vino Naturale & Biologico", (
+  ("il vino naturale",          "der Naturwein"),
+  ("la fermentazione spontanea","die spontane Vergärung",         "mit wilden Hefen statt Zuchthefen"),
+  ("il lievito",                "die Hefe"),
+  ("i lieviti indigeni",        "wilde Hefen / Naturhefen",       "auch: lieviti selvatici"),
+  ("non filtrato",              "ungefiltert"),
+  ("non chiarificato",          "nicht geschönt"),
+  ("i solfiti",                 "die Sulfite",                    "anidride solforosa = Schwefeldioxid (SO₂)"),
+  ("senza solfiti aggiunti",    "ohne zugesetzte Sulfite"),
+  ("biodinamico",               "biodynamisch",                   "nach Demeter-Prinzipien"),
+  ("l'agricoltura biologica",   "der biologische Anbau"),
+  ("il vino arancione",         "der Orangewein",                 "Weißwein mit Schalenkontakt — macerazione sulle bucce"),
+  ("la macerazione",            "die Mazerierung / Maischestandzeit"),
+))
+
+#vocab-group("Lavorazione in Cantina", (
+  ("la pigiatura",              "das Keltern / Maischen",         "pigiare = keltern, zerdrücken"),
+  ("la pressatura",             "die Pressung",                   "il torchio = die Kelter / Presse"),
+  ("la svinatura",              "der Abstich vom Trester"),
+  ("la chiarificazione",        "die Schönung",                   "Klärung durch Bentonit, Eiweiß o. Ä."),
+  ("la filtrazione",            "die Filtration"),
+  ("la botte",                  "das Fass",                       "allgemein für Holzfässer jeder Größe"),
+  ("la barrique",               "die Barrique",                   "225-Liter-Eichenfass — gibt Vanille- und Röstnoten"),
+  ("la botte grande",           "das große Holzfass",             "weniger Holzeinfluss als Barrique"),
+  ("il serbatoio",              "der Tank",                       "Stahl- oder Kunststofftank — neutral, fruchtbetont"),
+  ("il cemento",                "der Betonbehälter",              "temperaturstabil, neutral"),
+  ("l'anfora",                  "die Amphore",                    "Tongefäß — mikro-oxidativ, natürlich"),
+  ("il solforosa",              "das Schwefeln / SO₂-Einsatz",    "zur Haltbarmachung und Oxidationsschutz"),
+))
+
+] // end columns
