@@ -216,7 +216,7 @@ function countStatuses(entries: EntryResult[]) {
 
 export const model = {
   type: "@justjoheinz/leo-vocab-verifier",
-  version: "2026.04.24.3",
+  version: "2026.04.28.3",
 
   upgrades: [
     {
@@ -231,7 +231,34 @@ export const model = {
       description: "add accepted status; verify now re-queries mismatch entries until explicitly accepted",
       upgradeAttributes: (old: unknown) => old,
     },
+    {
+      fromVersion: "2026.04.24.3",
+      toVersion: "2026.04.28.1",
+      description: "auto-discover .typ files from repoDir when files argument is empty",
+      upgradeAttributes: (old: unknown) => old,
+    },
+    {
+      fromVersion: "2026.04.28.1",
+      toVersion: "2026.04.28.2",
+      description: "add report method for formatted mismatch/error summary",
+      upgradeAttributes: (old: unknown) => old,
+    },
+    {
+      fromVersion: "2026.04.28.2",
+      toVersion: "2026.04.28.3",
+      description: "files moved to global argument, wired via CEL from cheatsheet manifest; removed fs.readdir scanning",
+      upgradeAttributes: (old: unknown) => old,
+    },
   ],
+
+  globalArguments: z.object({
+    files: z
+      .array(z.string())
+      .describe(
+        "Typ file names relative to repoDir to verify. " +
+        "Wire this via CEL: data.latest(\"cheatsheet\", \"manifest\").attributes.typFiles"
+      ),
+  }),
 
   resources: {
     result: {
@@ -249,16 +276,22 @@ export const model = {
         "against dict.leo.org. Skips entries with status 'ok' or 'accepted'. " +
         "Re-queries 'mismatch', 'error', 'not_found', and new entries.",
       arguments: z.object({
-        files: z
-          .array(z.string())
-          .default(["cheatsheet.typ", "letteratura.typ"])
-          .describe("Typ file names relative to the repository root to scan."),
         delayMs: z
           .number().int().min(0).default(600)
           .describe("Milliseconds to wait between Leo requests to avoid rate-limiting."),
       }),
       execute: async (args, context) => {
-        const { files, delayMs } = args;
+        const { delayMs } = args;
+        const files: string[] = context.globalArgs.files;
+
+        if (!files || files.length === 0) {
+          throw new Error(
+            "No files configured. Wire the 'files' global argument via CEL: " +
+            "data.latest(\"cheatsheet\", \"manifest\").attributes.typFiles"
+          );
+        }
+
+        context.logger.info(`Verifying ${files.length} files from manifest: ${files.join(", ")}`);
 
         // 1. Parse all vocab entries
         const allEntries: VocabEntry[] = [];
@@ -425,6 +458,58 @@ export const model = {
         });
 
         return { dataHandles: [handle] };
+      },
+    },
+
+    report: {
+      description:
+        "Print a formatted summary of vocabulary verification results. " +
+        "Shows mismatches, not_found, and errors by default; pass status to filter.",
+      arguments: z.object({
+        status: z
+          .array(z.enum(["ok", "mismatch", "not_found", "error", "accepted"]))
+          .default(["mismatch", "not_found", "error"])
+          .describe("Which statuses to include in the report."),
+      }),
+      execute: async (args, context) => {
+        const prev = await context.readResource!("main") as z.infer<typeof VerifyResultSchema>;
+        if (!prev) {
+          throw new Error("No stored result found. Run 'verify' first.");
+        }
+
+        const filter = new Set(args.status);
+        const filtered = prev.entries.filter((e) => filter.has(e.status));
+
+        const counts = countStatuses(prev.entries);
+        context.logger.info(
+          `Verification from ${prev.checkedAt} — ` +
+          `total: ${prev.totalChecked}, ok: ${counts.ok}, accepted: ${counts.accepted}, ` +
+          `mismatches: ${counts.mismatches}, not_found: ${counts.notFound}, errors: ${counts.errors}`
+        );
+        context.logger.info(`Files: ${prev.files.join(", ")}`);
+        context.logger.info(`Showing ${filtered.length} entries with status: ${[...filter].join(", ")}`);
+
+        if (filtered.length === 0) {
+          context.logger.info("No entries match the requested statuses.");
+          return { dataHandles: [] };
+        }
+
+        // Group by status then file
+        const byStatus = new Map<string, typeof filtered>();
+        for (const s of args.status) byStatus.set(s, []);
+        for (const e of filtered) byStatus.get(e.status)!.push(e);
+
+        for (const [status, entries] of byStatus) {
+          if (entries.length === 0) continue;
+          context.logger.info(`\n── ${status.toUpperCase()} (${entries.length}) ──`);
+          for (const e of entries) {
+            const leo = e.leoTranslations.slice(0, 4).join(", ") || "—";
+            const detail = e.detail ? ` | ${e.detail}` : "";
+            context.logger.info(`  [${e.group}] ${e.italian} → sheet: "${e.german}" | leo: ${leo}${detail}`);
+          }
+        }
+
+        return { dataHandles: [] };
       },
     },
 

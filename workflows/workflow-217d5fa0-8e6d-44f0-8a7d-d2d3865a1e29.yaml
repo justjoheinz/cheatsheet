@@ -19,6 +19,17 @@ jobs:
             workingDir: "."
         dependsOn: []
         allowFailure: false
+      - name: scan
+        description: Update cheatsheet manifest for downstream CEL wiring
+        task:
+          type: model_method
+          modelIdOrName: cheatsheet
+          methodName: scan
+        dependsOn:
+          - step: compile
+            condition:
+              type: succeeded
+        allowFailure: false
       - name: update-readme
         description: Regenerate the README.md PDF table from all compiled cheatsheets
         task:
@@ -26,7 +37,7 @@ jobs:
           modelIdOrName: cheatsheet
           methodName: update-readme
         dependsOn:
-          - step: compile
+          - step: scan
             condition:
               type: succeeded
         allowFailure: false

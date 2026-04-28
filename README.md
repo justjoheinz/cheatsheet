@@ -4,7 +4,6 @@ Druckbare A4-PDFs für deutschsprachige Lernende der italienischen Sprache.
 
 | PDF | Topic | Inhalt |
 |---|---|---|
-| [cheatsheet.pdf](cheatsheet.pdf) | Grammatik & Verben | Vocabolario Comune — Verbi Frequenti |
 | [presente.pdf](presente.pdf) | Grammatik & Verben | Verbi Italiani — Coniugazione — Presente |
 | [condizionale.pdf](condizionale.pdf) | Grammatik | Condizionale Semplice — Formazione · Desinenze · Eccezioni |
 | [futuro.pdf](futuro.pdf) | Grammatik | Futuro Semplice — Formazione · Verbi Radicali · Uso |

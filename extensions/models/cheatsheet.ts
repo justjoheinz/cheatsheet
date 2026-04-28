@@ -23,6 +23,13 @@ const GlobalArgsSchema = z.object({
     .describe("Content domain classification for the cheatsheet"),
 });
 
+const ManifestSchema = z.object({
+  typFiles: z
+    .array(z.string())
+    .describe("Relative paths of .typ files that have a matching .pdf, e.g. 'verbi.typ'"),
+  scannedAt: z.iso.datetime().describe("Timestamp of the scan"),
+});
+
 const CheatsheetSchema = z.object({
   name: z.string().describe("Stem of the .typ file, e.g. 'condizionale'"),
   title: z.string().describe("L1 page title extracted from first #page-title"),
@@ -73,11 +80,26 @@ function countPages(source: string): number {
 
 export const model = {
   type: "@justjoheinz/cheatsheet",
-  version: "2026.04.22.1",
+  version: "2026.04.28.1",
+
+  upgrades: [
+    {
+      fromVersion: "2026.04.22.1",
+      toVersion: "2026.04.28.1",
+      description: "add scan method that writes manifest of all .typ files with matching .pdf",
+      upgradeAttributes: (old: unknown) => old,
+    },
+  ],
 
   globalArguments: GlobalArgsSchema,
 
   resources: {
+    manifest: {
+      description: "List of .typ files (relative paths) that have a matching .pdf in repoDir",
+      schema: ManifestSchema,
+      lifetime: "infinite",
+      garbageCollection: 5,
+    },
     cheatsheet: {
       description:
         "Compiled cheatsheet metadata: title, subtitle, topic, page count, PDF size",
@@ -88,6 +110,38 @@ export const model = {
   },
 
   methods: {
+    scan: {
+      description:
+        "Scan repoDir for .typ files (excluding shared.typ) that have a matching .pdf " +
+        "and write the list as a manifest resource. Other models (e.g. leo-vocab-verifier) " +
+        "wire to this manifest via CEL instead of scanning the filesystem themselves.",
+      arguments: z.object({}),
+      execute: async (
+        _args: Record<string, never>,
+        context: {
+          globalArgs: { repoDir: string };
+          writeResource: (spec: string, instance: string, data: unknown) => Promise<unknown>;
+          logger: { info: (msg: string) => void };
+        }
+      ) => {
+        const { repoDir } = context.globalArgs;
+        const allFiles = await fs.readdir(repoDir);
+        const typFiles = allFiles
+          .filter((f) => f.endsWith(".typ") && f !== "shared.typ")
+          .filter((f) => allFiles.includes(f.replace(/\.typ$/, ".pdf")))
+          .sort();
+
+        context.logger.info(`Found ${typFiles.length} .typ files with matching .pdf: ${typFiles.join(", ")}`);
+
+        const handle = await context.writeResource("manifest", "main", {
+          typFiles,
+          scannedAt: new Date().toISOString(),
+        });
+
+        return { dataHandles: [handle] };
+      },
+    },
+
     compile: {
       description:
         "Compile a .typ cheatsheet to PDF and record its metadata. " +
