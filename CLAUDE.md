@@ -66,8 +66,19 @@ Typst 0.14+ required (`brew install typst`).
 | File | Content |
 |---|---|
 | `shared.typ` | Palette, template function, all renderer functions — imported by every cheatsheet |
-| `cheatsheet.typ` | Verb conjugations, vocabulary, grammar rules (6 pages) |
+| `cheatsheet.typ` | Vocabulary (Verbi Frequenti) + tense usage rules (2 pages) |
+| `verbi.typ` | Verbi Frequenti — standalone vocab cheatsheet (1 page) |
+| `presente.typ` | Presente conjugation tables (1 page) |
+| `imperfetto.typ` | Imperfetto formation, paradigms, usage (1 page) |
+| `passato.typ` | Passato Prossimo formation, paradigms, usage (1 page) |
+| `condizionale.typ` | Condizionale Semplice (1 page) |
+| `futuro.typ` | Futuro Semplice (1 page) |
+| `imperativo.typ` | Imperativo Tu & Voi (1 page) |
+| `parole.typ` | Function words — adverbs, conjunctions, place words, evaluation (1 page) |
+| `preposizioni.typ` | Preposizioni Articolate + usage (1 page) |
+| `pronuncia.typ` | Pronunciation rules (1 page) |
 | `letteratura.typ` | Literature & reading vocabulary (3 pages) |
+| `arte.typ`, `casa.typ`, `cucina.typ`, `numeri.typ`, `orientierung.typ`, `politica.typ`, `vino.typ` | Thematic vocabularies |
 
 ### Starting a new cheatsheet
 
@@ -248,34 +259,21 @@ Use at the top of every page. Exception: Pronuncia page in `cheatsheet.typ` uses
 
 ## Document structure
 
-### cheatsheet.typ (6 pages)
+### cheatsheet.typ (2 pages)
 
-#### Pages 1–2: Verbi Italiani — Coniugazione
+#### Page 1: Vocabolario Comune — Verbi Frequenti
 
-Two-column conjugation tables. All `#verb-section` and `#verb-compare` calls.
+Two-column `#vocab-group` calls (same groups as verbi.typ). Ends with a reflexive verb footnote via `#ann`.
 
-Footer note: Passato prossimo formation rules + `·` notation explanation (`x/y = maskulin/feminin`).
+#### Page 2: I Tempi Verbali — Regole d'Uso — Presente
 
-#### Page 3: Vocabolario Comune — Verbi Frequenti
+`#tense-block` for Presente, followed by Gerundio & Progressivo section (formation table + stare + gerundio usage).
 
-Two-column `#vocab-group` calls. Ends with a reflexive verb footnote via `#ann`.
+### verbi.typ (1 page)
 
-#### Page 4: Parole Utili
+#### Page 1: Verbi Frequenti — Vocabolario Comune
 
-Two-column `#vocab-group` calls for function words (adverbs, conjunctions, indefinites, place words).
-
-#### Page 5: Preposizioni Articolate
-
-Full contraction grid (preposition × article), followed by a two-column section "Verwendung der Präpositionen" using `#prep-entry`. `#colbreak()` placed before `su` to balance columns.
-
-#### Page 6: I Tempi Verbali
-
-Two-column `#tense-block` calls for the three tenses, followed by:
-- Imperfetto vs. Passato prossimo contrast section (two-column inline blocks)
-- Gerundio & Progressivo: formation table (-ando/-endo) + stare + gerundio usage
-- Imperativo — 2. Person Singular (tu): formation table + irregular forms table
-- Imperativo voi
-- Pronomi oggetto diretto: pronoun table + Passato prossimo agreement rules
+Standalone version of the verb vocabulary. Two-column `#vocab-group` calls. Same groups as cheatsheet.typ page 1, with additional entries: `togliere` in Handlungen, `toccare` in Handlungen, `tradurre` in Kennen & Lehren.
 
 ### letteratura.typ (3 pages)
 
@@ -322,7 +320,9 @@ Two-column `#vocab-group` calls: Zeitungen & Magazine, Erscheinungsform, Buchmar
 
 ## Current vocabulary groups
 
-### Page 3 — Vocabolario Comune
+### cheatsheet.typ / verbi.typ — Vocabolario Comune
+
+verbi.typ has additional entries marked with *. Both files share the same group structure.
 
 | Group label | Verbs (count) |
 |---|---|
@@ -330,23 +330,25 @@ Two-column `#vocab-group` calls: Zeitungen & Magazine, Erscheinungsform, Buchmar
 | Bewegung | entrare, tornare, arrivare, partire, camminare, passeggiare, correre, portare, prendere (9) |
 | Alltag | mangiare, dormire, lavorare, studiare, comprare, aprire, chiudere, cucinare (8) |
 | Denken & Fühlen | pensare, credere, ricordare, dimenticare, sperare, preferire, amare, piacere (8) |
-| Handlungen | trovare, perdere, mettere, lasciare, usare, provare, aiutare, aspettare (8) |
+| Handlungen | trovare, perdere, mettere, lasciare, usare, provare, aiutare, aspettare, *togliere, *toccare (8+2) |
 | Küche & Zubereitung | preparare, tagliare, aggiungere, versare, mescolare (5) |
-| Kennen & Lehren | vedere, conoscere, imparare, insegnare, spiegare, mostrare, ricevere, ripetere, seguire (9) |
+| Kennen & Lehren | vedere, conoscere, imparare, insegnare, spiegare, mostrare, ricevere, ripetere, seguire, *tradurre (9+1) |
 | Alltag & Freizeit | vivere, abitare, pagare, cambiare, passare, cantare, ballare, viaggiare, suonare (9) |
 | Zustand & Veränderung | diventare, sembrare, restare, cominciare, continuare, smettere, succedere, riuscire, vendere, giocare, convivere (11) |
 | Verbi Riflessivi | chiamarsi, svegliarsi, alzarsi, lavarsi, vestirsi, sedersi, addormentarsi, sentirsi, trovarsi, innamorarsi, divertirsi, arrabbiarsi, annoiarsi, interessarsi, preoccuparsi, sbagliarsi, laurearsi (17) |
 
-### Page 4 — Parole Utili
+### parole.typ — Parole Utili
 
 | Group label | Entries (count) |
 |---|---|
 | Frequenz | sempre, spesso, a volte, di solito, raramente, mai (6) |
 | Zeit | ora/adesso, poi, dopo, prima, già, ancora, subito, presto, tardi, fa, scorso, prossimo (12) |
+| Größe & Form | grande, piccolo, lungo, corto, largo, stretto, alto, basso, pieno, vuoto (10) |
 | Quantität & Indefinita | tutto, molto, poco, abbastanza, troppo, qualcosa, niente, qualcuno, nessuno, ogni (10) |
 | Konjunktionen | e, ma, o, però, quindi, perché, quando, se, mentre, durante, anche, allora, che (13) |
 | Ort & Richtung | qui/qua, lì/là, dentro, fuori, sopra, sotto, vicino, lontano, ovunque (9) |
 | Fragewörter | chi, che cosa/cosa, dove, quando, perché, come, quanto, quale/quali (8) |
+| Bewertung | giusto, sbagliato, corretto, falso, vero, esatto (6) |
 
 ---
 
