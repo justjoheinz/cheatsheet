@@ -1,5 +1,5 @@
 type: '@justjoheinz/cheatsheet'
-typeVersion: 2026.04.28.1
+typeVersion: 2026.04.28.3
 id: 382c550a-9f87-462f-ac5f-5f255676a5e0
 name: cheatsheet
 version: 1
@@ -7,4 +7,5 @@ tags: {}
 globalArguments:
   repoDir: .
   topic: Grammatik & Verben
+  cheatsheets: '${{ data.findByTag(''specName'', ''cheatsheet'').map(r, r.attributes) }}'
 methods: {}

@@ -5,5 +5,5 @@ name: leo-vocab-verifier
 version: 1
 tags: {}
 globalArguments:
-  files: "${{ data.latest('cheatsheet', 'main').attributes.typFiles }}"
+  files: "${{ data.findByTag('specName', 'cheatsheet').map(r, r.attributes.name + '.typ') }}"
 methods: {}

@@ -4,24 +4,24 @@ Druckbare A4-PDFs für deutschsprachige Lernende der italienischen Sprache.
 
 | PDF | Topic | Inhalt |
 |---|---|---|
-| [presente.pdf](presente.pdf) | Grammatik & Verben | Verbi Italiani — Coniugazione — Presente |
-| [condizionale.pdf](condizionale.pdf) | Grammatik | Condizionale Semplice — Formazione · Desinenze · Eccezioni |
-| [futuro.pdf](futuro.pdf) | Grammatik | Futuro Semplice — Formazione · Verbi Radicali · Uso |
-| [imperativo.pdf](imperativo.pdf) | Grammatik | Imperativo — Tu & Voi |
-| [imperfetto.pdf](imperfetto.pdf) | Grammatik | Imperfetto — Formazione · Desinenze · Irregolari · Uso |
-| [passato.pdf](passato.pdf) | Grammatik | Passato Prossimo — Formazione · Participio · Uso |
-| [preposizioni.pdf](preposizioni.pdf) | Grammatik | Preposizioni Articolate — Preposizione · Articolo Determinativo |
-| [parole.pdf](parole.pdf) | Vokabular | Parole Utili — Avverbi · Congiunzioni · Indefiniti · Luogo |
-| [arte.pdf](arte.pdf) | Thematisch | Arte — Museo · Opere · Stili |
-| [casa.pdf](casa.pdf) | Thematisch | La Casa — Edifici · Case · Mobili · Arredamento |
-| [cucina.pdf](cucina.pdf) | Thematisch | In Cucina — Cucina · Cucinare · Preparazione |
-| [letteratura.pdf](letteratura.pdf) | Thematisch | Il Libro — Libri · Giornali · Letteratura |
-| [numeri.pdf](numeri.pdf) | Thematisch | I Numeri — Numeri Cardinali · Numeri Ordinali |
-| [orientierung.pdf](orientierung.pdf) | Thematisch | Orientarsi — Strade · Indicazioni · Luoghi |
-| [politica.pdf](politica.pdf) | Thematisch | Politica — Stato · Governo · Partiti |
-| [pronuncia.pdf](pronuncia.pdf) | Thematisch | Pronuncia — Regole Di Pronuncia — Consonanti · Vocali · Accento |
-| [verbi.pdf](verbi.pdf) | Thematisch | Verbi Frequenti — Vocabolario Comune |
-| [vino.pdf](vino.pdf) | Thematisch | Il Vino — Viticoltura · Vitigni · Tipologie |
+| [presente.pdf](output/presente.pdf) | Grammatik & Verben | Verbi Italiani — Coniugazione — Presente |
+| [condizionale.pdf](output/condizionale.pdf) | Grammatik | Condizionale Semplice — Formazione · Desinenze · Eccezioni |
+| [futuro.pdf](output/futuro.pdf) | Grammatik | Futuro Semplice — Formazione · Verbi Radicali · Uso |
+| [imperativo.pdf](output/imperativo.pdf) | Grammatik | Imperativo — Tu & Voi |
+| [imperfetto.pdf](output/imperfetto.pdf) | Grammatik | Imperfetto — Formazione · Desinenze · Irregolari · Uso |
+| [passato.pdf](output/passato.pdf) | Grammatik | Passato Prossimo — Formazione · Participio · Uso |
+| [preposizioni.pdf](output/preposizioni.pdf) | Grammatik | Preposizioni Articolate — Preposizione · Articolo Determinativo |
+| [parole.pdf](output/parole.pdf) | Vokabular | Parole Utili — Avverbi · Congiunzioni · Indefiniti · Luogo |
+| [arte.pdf](output/arte.pdf) | Thematisch | Arte — Museo · Opere · Stili |
+| [casa.pdf](output/casa.pdf) | Thematisch | La Casa — Edifici · Case · Mobili · Arredamento |
+| [cucina.pdf](output/cucina.pdf) | Thematisch | In Cucina — Cucina · Cucinare · Preparazione |
+| [letteratura.pdf](output/letteratura.pdf) | Thematisch | Il Libro — Libri · Giornali · Letteratura |
+| [numeri.pdf](output/numeri.pdf) | Thematisch | I Numeri — Numeri Cardinali · Numeri Ordinali |
+| [orientierung.pdf](output/orientierung.pdf) | Thematisch | Orientarsi — Strade · Indicazioni · Luoghi |
+| [politica.pdf](output/politica.pdf) | Thematisch | Politica — Stato · Governo · Partiti |
+| [pronuncia.pdf](output/pronuncia.pdf) | Thematisch | Pronuncia — Regole Di Pronuncia — Consonanti · Vocali · Accento |
+| [verbi.pdf](output/verbi.pdf) | Thematisch | Verbi Frequenti — Vocabolario Comune |
+| [vino.pdf](output/vino.pdf) | Thematisch | Il Vino — Viticoltura · Vitigni · Tipologie |
 
 ## Inhalt — cheatsheet.pdf
 

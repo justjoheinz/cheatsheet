@@ -21,13 +21,21 @@ const GlobalArgsSchema = z.object({
     ])
     .default("Thematisch")
     .describe("Content domain classification for the cheatsheet"),
-});
-
-const ManifestSchema = z.object({
-  typFiles: z
-    .array(z.string())
-    .describe("Relative paths of .typ files that have a matching .pdf, e.g. 'verbi.typ'"),
-  scannedAt: z.iso.datetime().describe("Timestamp of the scan"),
+  cheatsheets: z
+    .array(z.object({
+      name: z.string(),
+      title: z.string(),
+      subtitle: z.string(),
+      topic: z.string(),
+      pdfFile: z.string().optional(),
+      compiledAt: z.string().optional(),
+    }).passthrough())
+    .optional()
+    .describe(
+      "All compiled cheatsheet attributes, wired via CEL: " +
+      "data.findByTag('specName', 'cheatsheet').map(r, r.attributes). " +
+      "Used by update-readme and make on the aggregator instance."
+    ),
 });
 
 const CheatsheetSchema = z.object({
@@ -80,7 +88,7 @@ function countPages(source: string): number {
 
 export const model = {
   type: "@justjoheinz/cheatsheet",
-  version: "2026.04.28.1",
+  version: "2026.04.28.3",
 
   upgrades: [
     {
@@ -89,17 +97,23 @@ export const model = {
       description: "add scan method that writes manifest of all .typ files with matching .pdf",
       upgradeAttributes: (old: unknown) => old,
     },
+    {
+      fromVersion: "2026.04.28.1",
+      toVersion: "2026.04.28.2",
+      description: "remove scan/manifest; add cheatsheets global arg wired via data.findByTag for update-readme",
+      upgradeAttributes: (old: unknown) => old,
+    },
+    {
+      fromVersion: "2026.04.28.2",
+      toVersion: "2026.04.28.3",
+      description: "add make method; replaces Makefile + compile-cheatsheets shell model",
+      upgradeAttributes: (old: unknown) => old,
+    },
   ],
 
   globalArguments: GlobalArgsSchema,
 
   resources: {
-    manifest: {
-      description: "List of .typ files (relative paths) that have a matching .pdf in repoDir",
-      schema: ManifestSchema,
-      lifetime: "infinite",
-      garbageCollection: 5,
-    },
     cheatsheet: {
       description:
         "Compiled cheatsheet metadata: title, subtitle, topic, page count, PDF size",
@@ -110,35 +124,61 @@ export const model = {
   },
 
   methods: {
-    scan: {
+    make: {
       description:
-        "Scan repoDir for .typ files (excluding shared.typ) that have a matching .pdf " +
-        "and write the list as a manifest resource. Other models (e.g. leo-vocab-verifier) " +
-        "wire to this manifest via CEL instead of scanning the filesystem themselves.",
+        "Compile all stale .typ cheatsheets. Compares each file's mtime against compiledAt " +
+        "from model data (via the cheatsheets global argument) and recompiles only what has changed. " +
+        "Run on the aggregator instance.",
       arguments: z.object({}),
       execute: async (
         _args: Record<string, never>,
         context: {
-          globalArgs: { repoDir: string };
-          writeResource: (spec: string, instance: string, data: unknown) => Promise<unknown>;
+          globalArgs: { repoDir: string; cheatsheets?: Array<{ name: string; compiledAt?: string }> };
           logger: { info: (msg: string) => void };
         }
       ) => {
-        const { repoDir } = context.globalArgs;
-        const allFiles = await fs.readdir(repoDir);
-        const typFiles = allFiles
-          .filter((f) => f.endsWith(".typ") && f !== "shared.typ")
-          .filter((f) => allFiles.includes(f.replace(/\.typ$/, ".pdf")))
-          .sort();
+        const { repoDir, cheatsheets } = context.globalArgs;
 
-        context.logger.info(`Found ${typFiles.length} .typ files with matching .pdf: ${typFiles.join(", ")}`);
+        if (!cheatsheets?.length) {
+          throw new Error(
+            "No cheatsheet data available. Run 'compile' on each instance first, " +
+            "then 'make' handles incremental updates."
+          );
+        }
 
-        const handle = await context.writeResource("manifest", "main", {
-          typFiles,
-          scannedAt: new Date().toISOString(),
-        });
+        // Determine stale files: missing PDF, no compiledAt, or .typ newer than compiledAt
+        const stale: string[] = [];
+        for (const c of cheatsheets) {
+          const pdfMissing = !c.pdfFile || await fs.access(c.pdfFile).then(() => false).catch(() => true);
+          if (pdfMissing || !c.compiledAt) {
+            stale.push(c.name);
+            continue;
+          }
+          const stat = await fs.stat(path.join(repoDir, `${c.name}.typ`));
+          if (stat.mtimeMs > new Date(c.compiledAt).getTime()) {
+            stale.push(c.name);
+          }
+        }
 
-        return { dataHandles: [handle] };
+        if (stale.length === 0) {
+          context.logger.info("All cheatsheets up to date.");
+          return { dataHandles: [] };
+        }
+
+        context.logger.info(`Compiling ${stale.length} stale cheatsheet(s): ${stale.join(", ")}`);
+
+        await Promise.all(
+          stale.map(async (stem) => {
+            await execFileAsync(
+              "swamp",
+              ["model", "method", "run", stem, "compile", "--input", `name=${stem}`],
+              { cwd: repoDir }
+            );
+            context.logger.info(`Compiled ${stem}`);
+          })
+        );
+
+        return { dataHandles: [] };
       },
     },
 
@@ -167,7 +207,10 @@ export const model = {
         const { name } = args;
         const { repoDir, topic } = context.globalArgs;
         const typFile = path.join(repoDir, `${name}.typ`);
-        const pdfFile = path.join(repoDir, `${name}.pdf`);
+        const outputDir = path.join(repoDir, "output");
+        const pdfFile = path.join(outputDir, `${name}.pdf`);
+
+        await fs.mkdir(outputDir, { recursive: true });
 
         // Verify source exists
         try {
@@ -195,7 +238,7 @@ export const model = {
 
         // Compile with typst
         try {
-          await execFileAsync("typst", ["compile", typFile], {
+          await execFileAsync("typst", ["compile", typFile, pdfFile], {
             cwd: repoDir,
           });
         } catch (err: unknown) {
@@ -229,4 +272,3 @@ export const model = {
     },
   },
 };
-
