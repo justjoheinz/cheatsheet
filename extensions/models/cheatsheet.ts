@@ -88,7 +88,7 @@ function countPages(source: string): number {
 
 export const model = {
   type: "@justjoheinz/cheatsheet",
-  version: "2026.04.28.3",
+  version: "2026.04.28.4",
 
   upgrades: [
     {
@@ -107,6 +107,12 @@ export const model = {
       fromVersion: "2026.04.28.2",
       toVersion: "2026.04.28.3",
       description: "add make method; replaces Makefile + compile-cheatsheets shell model",
+      upgradeAttributes: (old: unknown) => old,
+    },
+    {
+      fromVersion: "2026.04.28.3",
+      toVersion: "2026.04.28.4",
+      description: "add review extension: create, approve, discard methods with review resource",
       upgradeAttributes: (old: unknown) => old,
     },
   ],

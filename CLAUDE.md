@@ -47,17 +47,30 @@ swamp models.
 Use `swamp --help` to see available commands.
 <!-- END swamp managed section -->
 
+# Skill Loading — Required
+
+Load the relevant skill via the `Skill` tool **before doing any work** in the matching area. Do not skip this even in plan mode.
+
+| Task area | Skill to load |
+|---|---|
+| Any model work (create, edit, run methods, inspect) | `swamp-model` |
+| Any workflow work (create, edit, trigger, schedule) | `swamp-workflow` |
+| Any extension work (new `.ts` model, extension, driver) | `swamp-extension-model` |
+| Any data/resource querying or CEL wiring | `swamp-data` |
+| Any report or analysis pipeline | `swamp-report` |
+| Debugging swamp errors or unexpected behavior | `swamp-troubleshooting` |
+| Repository-level management | `swamp-repo` |
+
+**When in doubt, load `swamp-model` first** — it covers the most common tasks and provides context for everything else.
+
+---
+
 # Italian Cheatsheet — Agent Reference
 
 ## Project
 
 Printable A4 PDF cheatsheets for German speakers learning Italian.
-Each `.typ` file compiles to a same-named `.pdf`.
-
-```
-typst compile cheatsheet.typ
-typst compile letteratura.typ
-```
+Each `.typ` file compiles to `output/<name>.pdf` via the `compile-on-schedule` workflow (every 15 min).
 
 Typst 0.14+ required (`brew install typst`).
 
@@ -66,7 +79,6 @@ Typst 0.14+ required (`brew install typst`).
 | File | Content |
 |---|---|
 | `shared.typ` | Palette, template function, all renderer functions — imported by every cheatsheet |
-| `cheatsheet.typ` | Vocabulary (Verbi Frequenti) + tense usage rules (2 pages) |
 | `verbi.typ` | Verbi Frequenti — standalone vocab cheatsheet (1 page) |
 | `presente.typ` | Presente conjugation tables (1 page) |
 | `imperfetto.typ` | Imperfetto formation, paradigms, usage (1 page) |
@@ -80,7 +92,45 @@ Typst 0.14+ required (`brew install typst`).
 | `letteratura.typ` | Literature & reading vocabulary (3 pages) |
 | `arte.typ`, `casa.typ`, `cucina.typ`, `numeri.typ`, `orientierung.typ`, `politica.typ`, `vino.typ` | Thematic vocabularies |
 
-### Starting a new cheatsheet
+### Review process
+
+All cheatsheet changes (new or edits) go through a three-step review cycle managed by the `@justjoheinz/cheatsheet` model:
+
+**1. Start a review**
+
+```bash
+# New cheatsheet (scaffolds .typ template + creates model instance):
+swamp model method run cheatsheet create --input name=sports --input topic=Thematisch
+
+# Existing cheatsheet (opens a new review cycle, no file changes):
+swamp model method run cheatsheet create --input name=vino
+```
+
+`topic` values: `Grammatik`, `Grammatik & Verben`, `Vokabular`, `Thematisch`
+
+**2. Edit and wait for compilation**
+
+Edit `<name>.typ`. The `compile-on-schedule` workflow compiles it automatically every 15 minutes to `output/<name>.pdf`. To compile immediately:
+
+```bash
+swamp model method run <name> compile --input name=<name>
+```
+
+**3. Approve or discard**
+
+Open `output/<name>.pdf` and review it, then:
+
+```bash
+# Approve — updates README and commits .typ + PDF + README + model config:
+swamp model method run <name> approve --input name=<name> --input message="Add sports vocabulary"
+
+# Discard — restores tracked files or deletes new untracked files:
+swamp model method run <name> discard --input name=<name>
+```
+
+Review state is tracked in the `review` resource (`draft` → `approved` or `discarded`).
+
+### Typst template
 
 ```typst
 #import "shared.typ": *
@@ -259,16 +309,6 @@ Use at the top of every page. Exception: Pronuncia page in `cheatsheet.typ` uses
 
 ## Document structure
 
-### cheatsheet.typ (2 pages)
-
-#### Page 1: Vocabolario Comune — Verbi Frequenti
-
-Two-column `#vocab-group` calls (same groups as verbi.typ). Ends with a reflexive verb footnote via `#ann`.
-
-#### Page 2: I Tempi Verbali — Regole d'Uso — Presente
-
-`#tense-block` for Presente, followed by Gerundio & Progressivo section (formation table + stare + gerundio usage).
-
 ### verbi.typ (1 page)
 
 #### Page 1: Verbi Frequenti — Vocabolario Comune
@@ -320,9 +360,7 @@ Two-column `#vocab-group` calls: Zeitungen & Magazine, Erscheinungsform, Buchmar
 
 ## Current vocabulary groups
 
-### cheatsheet.typ / verbi.typ — Vocabolario Comune
-
-verbi.typ has additional entries marked with *. Both files share the same group structure.
+### verbi.typ — Vocabolario Comune
 
 | Group label | Verbs (count) |
 |---|---|
